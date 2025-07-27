@@ -1,5 +1,89 @@
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Carousel functionality
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const indicators = carousel.querySelectorAll('.carousel-indicator');
+        const prevBtn = carousel.querySelector('.carousel-control.prev');
+        const nextBtn = carousel.querySelector('.carousel-control.next');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'prev');
+            });
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+            });
+            
+            // Add prev class to the previous slide for animation
+            const prevIndex = (index - 1 + slides.length) % slides.length;
+            slides[prevIndex].classList.add('prev');
+            
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            // Update current slide index
+            currentSlide = index;
+        }
+        
+        // Function to go to the next slide
+        function nextSlide() {
+            const newIndex = (currentSlide + 1) % slides.length;
+            showSlide(newIndex);
+        }
+        
+        // Function to go to the previous slide
+        function prevSlide() {
+            const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(newIndex);
+        }
+        
+        // Start automatic slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 3500);
+        }
+        
+        // Stop automatic slideshow
+        function stopSlideshow() {
+            clearInterval(slideInterval);
+        }
+        
+        // Event listeners for controls
+        prevBtn.addEventListener('click', function() {
+            prevSlide();
+            stopSlideshow();
+            startSlideshow();
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            nextSlide();
+            stopSlideshow();
+            startSlideshow();
+        });
+        
+        // Event listeners for indicators
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function() {
+                showSlide(index);
+                stopSlideshow();
+                startSlideshow();
+            });
+        });
+        
+        // Pause slideshow when hovering over carousel
+        carousel.addEventListener('mouseenter', stopSlideshow);
+        carousel.addEventListener('mouseleave', startSlideshow);
+        
+        // Start the slideshow
+        startSlideshow();
+    }
+    
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuIcon = mobileMenuBtn.querySelector('i');
@@ -62,30 +146,74 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                if (entry.target.classList.contains('plan-card')) {
+                    // Add animated class with a delay based on index for staggered effect
+                    const planCards = document.querySelectorAll('.plan-card');
+                    const index = Array.from(planCards).indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('animated');
+                    }, index * 150); // Reduced delay for faster animation
+                } else if (entry.target.classList.contains('animate-fade-up') || 
+                           entry.target.classList.contains('animate-fade-left') || 
+                           entry.target.classList.contains('animate-fade-right') || 
+                           entry.target.classList.contains('animate-scale')) {
+                    // These elements already have animation classes, just add a class to trigger them
+                    entry.target.classList.add('animate-start');
+                } else {
+                    // Fallback for elements without specific animation classes
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             }
         });
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.advantage-card, .plan-card, .value-card');
-    animateElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    const advantageCards = document.querySelectorAll('.advantage-card, .value-card');
+    advantageCards.forEach((el, index) => {
+        el.classList.add('animate-scale');
+        el.classList.add(`delay-${(index % 3 + 1) * 100}`);
         observer.observe(el);
     });
-
-    // WhatsApp button click
-    const whatsappBtn = document.querySelector('.whatsapp-btn');
-    whatsappBtn.addEventListener('click', function() {
-        // Replace with your WhatsApp number
-        const phoneNumber = '5511969013333';
-        const message = 'Olá! Gostaria de saber mais sobre os planos de internet.';
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
+    // Observe plan cards separately (they have CSS animations)
+    const planCards = document.querySelectorAll('.plan-card');
+    planCards.forEach(el => {
+        observer.observe(el);
     });
+    
+    // Add animations to section titles and text
+    const sectionTitles = document.querySelectorAll('.section-title');
+    sectionTitles.forEach(el => {
+        el.classList.add('animate-fade-up');
+        observer.observe(el);
+    });
+    
+    // Add animations to business and entertainment text
+    const businessText = document.querySelector('.business-text');
+    if (businessText) {
+        const subtitle = businessText.querySelector('.business-subtitle');
+        const title = businessText.querySelector('.section-title');
+        if (subtitle) {
+            subtitle.classList.add('animate-fade-left');
+            observer.observe(subtitle);
+        }
+        if (title) {
+            title.classList.add('animate-fade-up');
+            title.classList.add('delay-100');
+            observer.observe(title);
+        }
+    }
+    
+    const entertainmentText = document.querySelector('.entertainment-text');
+    if (entertainmentText) {
+        const title = entertainmentText.querySelector('.section-title');
+        if (title) {
+            title.classList.add('animate-fade-right');
+            observer.observe(title);
+        }
+    }
+
+    // WhatsApp button is now a direct link in the social-links section
 
     // Plan buttons are now direct links to WhatsApp with pre-filled messages
 
@@ -156,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function typeWriter(element, text, speed = 100) {
     let i = 0;
     element.innerHTML = '';
-    
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -164,15 +291,14 @@ function typeWriter(element, text, speed = 100) {
             setTimeout(type, speed);
         }
     }
-    
     type();
 }
 
 // Initialize typing effect when page loads
 window.addEventListener('load', function() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
+    const heroTitles = document.querySelectorAll('.hero-title');
+    heroTitles.forEach(heroTitle => {
         const originalText = heroTitle.textContent;
-        typeWriter(heroTitle, originalText, 150);
-    }
+        typeWriter(heroTitle, originalText, 40);
+    });
 });

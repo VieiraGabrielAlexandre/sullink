@@ -19,7 +19,7 @@ body {
 /* Header Styles */
 .header {
     position: relative;
-    min-height: 100vh;
+    min-height: 80vh;
     background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: white;
     overflow: hidden;
@@ -81,29 +81,59 @@ body {
     border-radius: 0.5rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
+}
+
+.btn:active {
+    transform: scale(0.95);
 }
 
 .btn-primary {
     background: #3b82f6;
     color: white;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
 }
 
 .btn-primary:hover {
     background: #2563eb;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
     background: #1d4ed8;
     color: white;
+    box-shadow: 0 4px 6px -1px rgba(29, 78, 216, 0.2), 0 2px 4px -1px rgba(29, 78, 216, 0.1);
 }
 
 .btn-secondary:hover {
     background: #1e40af;
+    box-shadow: 0 10px 15px -3px rgba(29, 78, 216, 0.3), 0 4px 6px -2px rgba(29, 78, 216, 0.1);
+    transform: translateY(-2px);
 }
 
 .btn-cta {
@@ -111,10 +141,26 @@ body {
     color: white;
     font-size: 1.125rem;
     padding: 1rem 2rem;
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.1);
+    animation: ctaPulse 2s infinite;
+}
+
+@keyframes ctaPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
 }
 
 .btn-cta:hover {
     background: #2563eb;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 20px -5px rgba(59, 130, 246, 0.4), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
 }
 
 .mobile-menu-btn {
@@ -149,11 +195,91 @@ body {
     width: fit-content;
 }
 
-/* Hero Section */
+/* Hero Section with Carousel */
 .hero {
     position: relative;
     z-index: 10;
-    padding: 5rem 0;
+    padding: 3rem 0 2rem 0;
+}
+
+/* Carousel Styles */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(100%);
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+}
+
+.carousel-slide.prev {
+    transform: translateX(-100%);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.carousel-control {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-control:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.carousel-indicators {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicator.active {
+    background: white;
+    transform: scale(1.2);
 }
 
 .hero-content {
@@ -168,16 +294,61 @@ body {
     font-weight: bold;
     line-height: 1.1;
     margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards 0.2s;
 }
 
 .hero-subtitle {
     font-size: 1.25rem;
     color: #93c5fd;
     margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-image {
     position: relative;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInRight 0.5s forwards 0.4s;
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .hero-image img {
@@ -189,7 +360,7 @@ body {
 .hero-image-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    background: linear-gradient(135deg, #90EE90 0%, #7CCD7C 100%);
     opacity: 0.2;
     border-radius: 0.5rem;
 }
@@ -211,7 +382,7 @@ body {
 
 .feature-item i {
     font-size: 3rem;
-    color: #fbbf24;
+    color: #FFFFFF;
     margin-bottom: 1rem;
 }
 
@@ -228,7 +399,34 @@ body {
 /* Advantages Section */
 .advantages {
     padding: 5rem 0;
-    background: #f8fafc;
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.advantages::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(144, 238, 144, 0.2);
+    z-index: 1;
+}
+
+.advantages::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(96, 165, 250, 0.15);
+    z-index: 1;
 }
 
 .advantages-content {
@@ -236,12 +434,67 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .section-title {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
+}
+
+/* Animation classes */
+.animate-fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: none;
+}
+
+.animate-fade-up.animate-start {
+    animation: fadeInUp 0.5s forwards;
+}
+
+.animate-fade-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    animation: none;
+}
+
+.animate-fade-left.animate-start {
+    animation: fadeInLeft 0.5s forwards;
+}
+
+.animate-fade-right {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: none;
+}
+
+.animate-fade-right.animate-start {
+    animation: fadeInRight 0.5s forwards;
+}
+
+.animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: none;
+}
+
+.animate-scale.animate-start {
+    animation: fadeInScale 0.5s forwards;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
 }
 
 .text-blue {
@@ -259,34 +512,51 @@ body {
 }
 
 .advantage-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
     padding: 1.5rem;
     border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    border: 2px solid #dbeafe;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(96, 165, 250, 0.3);
+    backdrop-filter: blur(5px);
     transition: all 0.3s ease;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.advantage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(144, 238, 144, 0.1) 0%, rgba(96, 165, 250, 0.1) 100%);
+    z-index: -1;
 }
 
 .advantage-card:hover {
-    border-color: #93c5fd;
-    transform: translateY(-2px);
+    border-color: #90EE90;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 .advantage-card i {
     font-size: 3rem;
-    color: #2563eb;
+    color: #90EE90;
     margin-bottom: 1rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .advantage-card h3 {
     font-weight: 600;
-    color: #374151;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Plans Section */
 .plans {
-    padding: 5rem 0;
+    padding: 2rem 0 5rem 0;
     background: #2563eb;
 }
 
@@ -306,23 +576,47 @@ body {
     border-radius: 0.75rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+.plan-card.animated {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .plan-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes planPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+}
+
+.plan-card.plan-featured {
+    animation: planPulse 2s infinite;
 }
 
 .plan-featured {
-    border: 4px solid #fbbf24;
+    border: 4px solid #90EE90;
 }
 
 .plan-badge {
     position: absolute;
     top: 0;
     right: 0;
-    background: #fbbf24;
+    background: #90EE90;
     color: #1e40af;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -403,16 +697,87 @@ body {
     background: #2563eb;
     color: white;
     padding: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+    transform: translateY(0);
+    z-index: 1;
+}
+
+.btn-plan::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    z-index: -1;
 }
 
 .btn-plan:hover {
     background: #1d4ed8;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+}
+
+.btn-plan:hover::after {
+    animation: ripple 0.6s ease-out;
+}
+
+.btn-plan:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+@keyframes ripple {
+    0% {
+        opacity: 1;
+        transform: scale(0) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(20) translate(-50%, -50%);
+    }
 }
 
 /* Entertainment Section */
 .entertainment {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 70%, #1e40af 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.entertainment::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 30%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(144, 238, 144, 0.15);
+    z-index: 1;
+}
+
+.entertainment::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    right: 20%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(30, 64, 175, 0.2);
+    z-index: 1;
 }
 
 .entertainment-content {
@@ -420,23 +785,65 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.entertainment-text h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .entertainment-image .image-container {
-    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+    background: linear-gradient(135deg, rgba(144, 238, 144, 0.7) 0%, rgba(96, 165, 250, 0.7) 100%);
     padding: 1rem;
     border-radius: 1rem;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.entertainment-image .image-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
 }
 
 .entertainment-image img {
     width: 100%;
     border-radius: 0.75rem;
+    transition: all 0.3s ease;
 }
 
 /* Business Section */
 .business {
     padding: 5rem 0;
-    background: #f8fafc;
+    background: linear-gradient(135deg, #1e40af 0%, #0f2b68 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.business::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(96, 165, 250, 0.1);
+    z-index: 1;
+}
+
+.business::after {
+    content: '';
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(144, 238, 144, 0.1);
+    z-index: 1;
 }
 
 .business-content {
@@ -444,22 +851,39 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .business-image .image-container {
-    background: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.8) 0%, rgba(144, 238, 144, 0.5) 100%);
     padding: 1rem;
     border-radius: 1rem;
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.business-image .image-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
 }
 
 .business-image img {
     width: 100%;
     border-radius: 0.75rem;
+    transition: all 0.3s ease;
 }
 
 .business-subtitle {
-    color: #6b7280;
+    color: #93c5fd;
     margin-bottom: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.business-text h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Company Values Section */
@@ -495,7 +919,7 @@ body {
 
 .value-card i {
     font-size: 4rem;
-    color: #fbbf24;
+    color: #90EE90;
     margin-bottom: 1.5rem;
 }
 
@@ -506,7 +930,7 @@ body {
 }
 
 .value-card p {
-    color: #93c5fd;
+    color: #ffffff;
     line-height: 1.6;
 }
 
@@ -612,6 +1036,18 @@ body {
     gap: 1rem;
 }
 
+/* WhatsApp Button in Social Links */
+.whatsapp-btn {
+    color: #25d366 !important;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+    color: white !important;
+    transform: scale(1.1);
+}
+
 /* WhatsApp Float Button */
 .whatsapp-float {
     position: fixed;
@@ -620,7 +1056,7 @@ body {
     z-index: 1000;
 }
 
-.whatsapp-btn {
+.whatsapp-float-btn {
     background: #25d366;
     color: white;
     border: none;
@@ -628,12 +1064,56 @@ body {
     width: 60px;
     height: 60px;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.whatsapp-btn:hover {
+.whatsapp-float-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #25d366;
+    opacity: 0.7;
+    z-index: -1;
+    animation: bubble 2s infinite ease-in-out;
+}
+
+.whatsapp-float-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #25d366;
+    opacity: 0.5;
+    z-index: -2;
+    animation: bubble 2s infinite ease-in-out;
+    animation-delay: 0.5s;
+}
+
+@keyframes bubble {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+.whatsapp-float-btn:hover {
     background: #128c7e;
     transform: scale(1.1);
 }
@@ -665,21 +1145,94 @@ body {
         font-size: 2rem;
     }
     
+    /* Carousel responsive styles */
+    .carousel-controls {
+        margin-top: 1rem;
+    }
+    
+    .carousel-control {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+    }
+    
+    /* Ensure plan cards animate properly on mobile */
+    .plan-card:hover {
+        transform: scale(1.03) translateY(-5px);
+    }
+    
+    /* Adjust button animations for touch devices */
+    .btn:hover {
+        transform: none;
+    }
+    
+    .btn:active {
+        transform: scale(0.95);
+    }
+    
+    .btn-cta:hover {
+        transform: scale(1.03);
+    }
+    
+    /* Responsive adjustments for the new section designs */
+    .advantages::before, 
+    .advantages::after,
+    .entertainment::before,
+    .entertainment::after,
+    .business::before,
+    .business::after {
+        width: 150px;
+        height: 150px;
+        opacity: 0.5;
+    }
+    
     .advantages-content {
         grid-template-columns: 1fr;
         text-align: center;
+        padding: 0 1rem;
     }
     
     .advantages-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .advantage-card {
+        margin-bottom: 1rem;
     }
     
     .entertainment-content {
         grid-template-columns: 1fr;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .entertainment-text {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+    
+    .entertainment-image {
+        order: 2;
+        max-width: 400px;
+        margin: 0 auto;
     }
     
     .business-content {
         grid-template-columns: 1fr;
+        text-align: center;
+        padding: 0 1rem;
+    }
+    
+    .business-image {
+        max-width: 400px;
+        margin: 0 auto 2rem;
     }
     
     .footer-bottom {
@@ -707,5 +1260,37 @@ body {
     
     .values-grid {
         grid-template-columns: 1fr;
+    }
+    
+    /* Further adjustments for very small screens */
+    .advantages::before, 
+    .advantages::after,
+    .entertainment::before,
+    .entertainment::after,
+    .business::before,
+    .business::after {
+        width: 100px;
+        height: 100px;
+        opacity: 0.3;
+    }
+    
+    .advantage-card i,
+    .value-card i {
+        font-size: 2.5rem;
+    }
+    
+    .advantage-card {
+        padding: 1rem;
+    }
+    
+    .entertainment-image .image-container,
+    .business-image .image-container {
+        padding: 0.5rem;
+    }
+    
+    .advantages,
+    .entertainment,
+    .business {
+        padding: 3rem 0;
     }
 }
