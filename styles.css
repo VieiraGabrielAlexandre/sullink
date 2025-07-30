@@ -815,7 +815,7 @@ body {
 /* Entertainment Section */
 .entertainment {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #1d1d1d 0%, #0a1f33 100%);
+    background: linear-gradient(135deg, #0075ff 0%, #0a1f33 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -829,7 +829,7 @@ body {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: rgba(56, 212, 48, 0.1);
+    background: rgba(56, 212, 48, 0.3);
     z-index: 1;
 }
 
@@ -841,7 +841,7 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: rgba(0, 117, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     z-index: 1;
 }
 
@@ -859,11 +859,11 @@ body {
 }
 
 .entertainment-image .image-container {
-    background: linear-gradient(135deg, rgba(56, 212, 48, 0.2) 0%, rgba(0, 117, 255, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(56, 212, 48, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(56, 212, 48, 0.3);
+    border: 2px solid rgba(56, 212, 48, 0.5);
     transition: all 0.3s ease;
 }
 
@@ -882,7 +882,7 @@ body {
 /* Business Section */
 .business {
     padding: 5rem 0;
-    background: linear-gradient(135deg, #0a1f33 0%, #1d1d1d 100%);
+    background: linear-gradient(135deg, #38d430 0%, #0a1f33 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -896,7 +896,7 @@ body {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(0, 117, 255, 0.1);
+    background: rgba(0, 117, 255, 0.3);
     z-index: 1;
 }
 
@@ -908,7 +908,7 @@ body {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: rgba(56, 212, 48, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     z-index: 1;
 }
 
@@ -922,11 +922,11 @@ body {
 }
 
 .business-image .image-container {
-    background: linear-gradient(135deg, rgba(0, 117, 255, 0.2) 0%, rgba(56, 212, 48, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(0, 117, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
     padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(0, 117, 255, 0.3);
+    border: 2px solid rgba(0, 117, 255, 0.5);
     transition: all 0.3s ease;
 }
 
