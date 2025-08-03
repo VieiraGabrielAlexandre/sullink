@@ -1084,6 +1084,21 @@ body {
     border-radius: 50%;
     background: rgba(0, 117, 255, 0.1);
     border: 1px solid rgba(0, 117, 255, 0.3);
+    text-decoration: none;
+}
+
+.social-link,
+.social-link:link,
+.social-link:visited,
+.social-link:hover,
+.social-link:active,
+.social-link:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+    outline: none !important;
 }
 
 .social-link:hover {
@@ -1091,6 +1106,7 @@ body {
     background: rgba(56, 212, 48, 0.1);
     border-color: #38d430;
     transform: scale(1.1);
+    text-decoration: none;
 }
 
 .footer-links {
@@ -1146,11 +1162,32 @@ body {
     color: #25d366 !important;
     position: relative;
     transition: all 0.3s ease;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+    outline: none !important;
+}
+
+.whatsapp-btn,
+.whatsapp-btn:link,
+.whatsapp-btn:visited,
+.whatsapp-btn:hover,
+.whatsapp-btn:active,
+.whatsapp-btn:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+    outline: none !important;
 }
 
 .whatsapp-btn:hover {
     color: #38d430 !important;
     transform: scale(1.1);
+    text-decoration: none !important;
 }
 
 /* WhatsApp Float Button */
@@ -1176,6 +1213,26 @@ body {
     box-shadow: 0 10px 15px -3px rgba(37, 211, 102, 0.3);
     transition: all 0.3s ease;
     position: relative;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+    outline: none !important;
+}
+
+.whatsapp-float-btn,
+.whatsapp-float-btn:link,
+.whatsapp-float-btn:visited,
+.whatsapp-float-btn:hover,
+.whatsapp-float-btn:active,
+.whatsapp-float-btn:focus {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration-style: none !important;
+    text-decoration-color: transparent !important;
+    border-bottom: none !important;
+    outline: none !important;
 }
 
 .whatsapp-float-btn::before {
@@ -1221,6 +1278,7 @@ body {
 .whatsapp-float-btn:hover {
     background: #38d430;
     transform: scale(1.1);
+    text-decoration: none !important;
 }
 
 /* Responsive Design */
