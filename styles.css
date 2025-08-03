@@ -1082,8 +1082,8 @@ body {
     transition: all 0.3s ease;
     padding: 0.5rem;
     border-radius: 50%;
-    background: rgba(0, 117, 255, 0.1);
-    border: 1px solid rgba(0, 117, 255, 0.3);
+    /*background: rgba(0, 117, 255, 0.1);
+    border: 1px solid rgba(0, 117, 255, 0.3);*/
     text-decoration: none;
 }
 
