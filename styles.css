@@ -1087,6 +1087,23 @@ body {
     text-decoration: none;
 }
 
+/* Facebook icon - blue */
+.social-link .fa-facebook {
+    color: #1877f2;
+}
+
+/* Instagram icon - gradient colors */
+.social-link .fa-instagram {
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* WhatsApp icon - green */
+.social-link .fa-whatsapp {
+    color: #25d366;
+}
 .social-link,
 .social-link:link,
 .social-link:visited,
@@ -1102,11 +1119,28 @@ body {
 }
 
 .social-link:hover {
-    color: #38d430;
-    background: rgba(56, 212, 48, 0.1);
-    border-color: #38d430;
     transform: scale(1.1);
-    text-decoration: none;
+}
+
+/* Hover effects for each social icon */
+.social-link:hover .fa-facebook {
+    color: #0d5dbf;
+}
+
+.social-link:hover .fa-instagram {
+    background: linear-gradient(45deg, #d6832a 0%,#c55a33 25%,#b91f39 50%,#a91c57 75%,#9c1474 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.social-link:hover .fa-whatsapp {
+    color: #1faa52;
+}
+background: rgba(56, 212, 48, 0.1);
+border-color: #38d430;
+transform: scale(1.1);
+text-decoration: none;
 }
 
 .footer-links {
