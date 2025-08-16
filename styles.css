@@ -64,7 +64,7 @@ body {
 }
 
 .logo img {
-    height: 150px;
+    height: 50vh;
     width: auto;
     max-width: 200px;
     object-fit: contain;
@@ -1335,7 +1335,7 @@ text-decoration: none;
 /* Responsive Design */
 @media (max-width: 768px) {
     .logo img {
-        height: 150px;
+        height: 50vh;
         max-width: 150px;
     }
 
@@ -1473,8 +1473,8 @@ text-decoration: none;
 
 @media (max-width: 480px) {
     .logo img {
-        height: 150px;
-        max-width: 120px;
+        height: 50vh;
+        max-width: 150px;
     }
 
     .hero-title {
