@@ -846,13 +846,23 @@ body {
 .plan-feature i {
     color: #38d430;
     width: 1.25rem;
+}
+
+.btn-plan {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 15px -3px rgba(255, 107, 53, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 6px -1px rgba(0, 117, 255, 0.3);
-    transform: translateY(0);
-    z-index: 1;
-    border: 1px solid rgba(0, 117, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 1rem;
 }
 
 .btn-plan::after {
@@ -871,11 +881,11 @@ body {
 }
 
 .btn-plan:hover {
-    background: linear-gradient(135deg, #38d430 0%, #2bb028 100%);
-    color: #0a1f33;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    color: white;
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px -5px rgba(56, 212, 48, 0.4);
-    border-color: #38d430;
+    box-shadow: 0 10px 20px -5px rgba(255, 107, 53, 0.4);
+    border-color: #ff6b35;
 }
 
 .btn-plan:hover::after {
@@ -1115,7 +1125,7 @@ body {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr 2fr;
     gap: 2rem;
     margin-bottom: 2rem;
 }
@@ -1125,6 +1135,25 @@ body {
     font-weight: bold;
     margin-bottom: 1rem;
     color: #38d430;
+}
+
+.footer-logo {
+    margin-bottom: -2.6rem;
+    margin-top: -44px;
+}
+
+.footer-logo img {
+    height: 150px;
+    width: auto;
+    max-width: 400px;
+    object-fit: contain;
+    filter: brightness(1.1) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2) contrast(1.2);
 }
 
 .footer-subtitle {
@@ -1547,7 +1576,37 @@ text-decoration: none;
 
     .footer-bottom {
         flex-direction: column;
+        gap: 1rem;
         text-align: center;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-main {
+        text-align: left;
+    }
+
+    .footer-contact-section {
+        text-align: left;
+    }
+
+    .footer-buttons {
+        align-items: center;
+    }
+
+    .btn-footer {
+        max-width: 250px;
+    }
+
+    .footer-bottom-right {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
     }
 
     .features-grid {
@@ -1645,4 +1704,20 @@ text-decoration: none;
     .business {
         padding: 3rem 0;
     }
+
+    .coverage {
+        padding: 3rem 0;
+    }
+
+    .coverage-form {
+        padding: 1.5rem;
+    }
+
+    .coverage::before,
+    .coverage::after {
+        width: 100px;
+        height: 100px;
+        opacity: 0.3;
+    }
+
 }

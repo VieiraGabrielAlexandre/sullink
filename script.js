@@ -302,6 +302,96 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// CEP Consultation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const cepForm = document.getElementById('cepForm');
+    const cepInput = document.getElementById('cepInput');
+    const cepResult = document.getElementById('cepResult');
+
+    // Format CEP input
+    cepInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 5) {
+            value = value.replace(/^(\d{5})(\d)/, '$1-$2');
+        }
+        e.target.value = value;
+    });
+
+    // Handle form submission
+    cepForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const cep = cepInput.value.replace(/\D/g, '');
+
+        if (cep.length !== 8) {
+            showResult('error', 'Por favor, digite um CEP válido com 8 dígitos.');
+            return;
+        }
+
+        showResult('loading', 'Consultando cobertura...');
+
+        try {
+            // Check coverage using the admin API
+            const response = await fetch('/admin/public/ceps?cep=' + cep);
+
+            if (response.ok) {
+                const data = await response.json();
+
+                if (data && data.length > 0) {
+                    // CEP found - has coverage
+                    showResult('success',
+                        `<div class="result-text">
+                            <i class="fas fa-check-circle"></i>
+                            Ótima notícia! Temos cobertura no seu CEP.
+                        </div>
+                        <div class="result-action">
+                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês têm cobertura. Gostaria de contratar um plano." target="_blank" class="btn-contact">
+                                <i class="fab fa-whatsapp"></i>
+                                Contratar agora
+                            </a>
+                        </div>`
+                    );
+                } else {
+                    // CEP not found - no coverage
+                    showResult('error',
+                        `<div class="result-text">
+                            <i class="fas fa-times-circle"></i>
+                            Ainda não temos cobertura no seu CEP.
+                        </div>
+                        <div class="result-action">
+                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês ainda não têm cobertura. Quando chegará na minha região?" target="_blank" class="btn-contact">
+                                <i class="fab fa-whatsapp"></i>
+                                Falar com atendimento
+                            </a>
+                        </div>`
+                    );
+                }
+            } else {
+                throw new Error('Erro na consulta');
+            }
+        } catch (error) {
+            console.error('Erro ao consultar CEP:', error);
+            showResult('error',
+                `<div class="result-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Erro ao consultar CEP. Tente novamente.
+                </div>
+                <div class="result-action">
+                    <a href="https://wa.me/5511969013333?text=Olá! Tive problemas para consultar meu CEP ${cepInput.value}. Podem me ajudar?" target="_blank" class="btn-contact">
+                        <i class="fab fa-whatsapp"></i>
+                        Falar com atendimento
+                    </a>
+                </div>`
+            );
+        }
+    });
+
+    function showResult(type, message) {
+        cepResult.className = `cep-result ${type}`;
+        cepResult.innerHTML = message;
+    }
+});
+
 // Add typing effect to hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;

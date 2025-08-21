@@ -3,72 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sul Link - Provedor de Internet Fibra Óptica</title>
-    <meta name="description" content="Internet de alta velocidade com fibra óptica. Planos residenciais e empresariais com Wi-Fi grátis e suporte 24h.">
+    <title>Sul Link - Internet Fibra Óptica</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-
 <!-- Header -->
 <header class="header">
-    <div class="header-overlay"></div>
     <div class="header-bg"></div>
+    <div class="header-overlay"></div>
 
+    <!-- Navigation -->
     <nav class="nav">
         <div class="container">
             <div class="nav-content">
                 <div class="logo">
-                    <img src="assets/logo-novo-4.png" alt="Sul Link Logo">
+                    <img src="assets/logo-branco-semfundo.png" alt="Sul Link">
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="nav-menu">
-                    <a href="#inicio" class="nav-link">Início</a>
-                    <a href="#sobre" class="nav-link">Sobre nós</a>
-                    <a href="#planos" class="nav-link">Para você</a>
-                    <a href="#empresarial" class="nav-link">Para sua empresa</a>
-                    <a href="https://wa.me/5511969013333?text=Olá! Preciso de atendimento." target="_blank" class="nav-link">Atendimento</a>
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj" target="_blank" class="btn btn-primary">
-                        <i class="fas fa-phone"></i>
-                        Área do cliente
-                    </a>
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj/segunda-via" target="_blank" class="btn btn-secondary">
-                        2ª via fatura
-                    </a>
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#advantages" class="nav-link">Vantagens</a>
+                    <a href="#coverage" class="nav-link">Cobertura</a>
+                    <a href="#plans" class="nav-link">Planos</a>
+                    <a href="#business" class="nav-link">Empresarial</a>
+                    <a href="#values" class="nav-link">Valores</a>
                 </div>
 
-                <!-- Mobile Buttons (outside menu) -->
-                <div class="mobile-buttons">
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj" target="_blank" class="btn btn-primary mobile-btn-small">
-                        <i class="fas fa-user"></i>
-                        Área do cliente
-                    </a>
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj/segunda-via" target="_blank" class="btn btn-secondary mobile-btn-small">
-                        <i class="fas fa-file-invoice"></i>
-                        2ª via fatura
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
-            </div>
 
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="#inicio" class="mobile-nav-link">Início</a>
-                <a href="#sobre" class="mobile-nav-link">Sobre nós</a>
-                <a href="#planos" class="mobile-nav-link">Para você</a>
-                <a href="#empresarial" class="mobile-nav-link">Para sua empresa</a>
-                <a href="https://wa.me/5511969013333?text=Olá! Preciso de atendimento." target="_blank" class="mobile-nav-link">Atendimento</a>
+                <div class="mobile-menu" id="mobileMenu">
+                    <a href="#home" class="mobile-nav-link">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="#advantages" class="mobile-nav-link">
+                        <i class="fas fa-star"></i> Vantagens
+                    </a>
+                    <a href="#coverage" class="mobile-nav-link">
+                        <i class="fas fa-map-marker-alt"></i> Cobertura
+                    </a>
+                    <a href="#plans" class="mobile-nav-link">
+                        <i class="fas fa-wifi"></i> Planos
+                    </a>
+                    <a href="#business" class="mobile-nav-link">
+                        <i class="fas fa-building"></i> Empresarial
+                    </a>
+                    <a href="#values" class="mobile-nav-link">
+                        <i class="fas fa-heart"></i> Valores
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section with Carousel -->
-    <div class="hero">
+    <section class="hero" id="home">
         <div class="container">
             <div class="carousel">
                 <div class="carousel-container">
@@ -76,19 +68,15 @@
                     <div class="carousel-slide active">
                         <div class="hero-content">
                             <div class="hero-text">
-                                <h1 class="hero-title">
-                                    SEMPRE<br>
-                                    CONECTADO
-                                </h1>
-                                <p class="hero-subtitle">
-                                    Internet de alta velocidade com fibra óptica para sua casa e empresa
-                                </p>
-                                <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar um plano de internet." target="_blank" class="btn btn-cta">
-                                    Contrate já
+                                <h1 class="hero-title">Internet de Alta Velocidade</h1>
+                                <p class="hero-subtitle">Conecte-se ao futuro com nossa fibra óptica de última geração. Velocidade, estabilidade e qualidade incomparáveis.</p>
+                                <a href="https://wa.me/5511969013333?text=Olá! Gostaria de conhecer os planos de internet da Sul Link." target="_blank" class="btn btn-cta">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Fale Conosco
                                 </a>
                             </div>
                             <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Pessoa conectada">
+                                <img src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Fibra Óptica">
                                 <div class="hero-image-overlay"></div>
                             </div>
                         </div>
@@ -98,19 +86,15 @@
                     <div class="carousel-slide">
                         <div class="hero-content">
                             <div class="hero-text">
-                                <h1 class="hero-title">
-                                    VELOCIDADE<br>
-                                    MÁXIMA
-                                </h1>
-                                <p class="hero-subtitle">
-                                    Navegue, assista e jogue com a melhor conexão do mercado
-                                </p>
-                                <a href="#planos" class="btn btn-cta">
-                                    Ver planos
+                                <h1 class="hero-title">Planos Para Toda Família</h1>
+                                <p class="hero-subtitle">Desde navegação básica até streaming em 4K. Temos o plano perfeito para suas necessidades digitais.</p>
+                                <a href="#plans" class="btn btn-cta">
+                                    <i class="fas fa-wifi"></i>
+                                    Ver Planos
                                 </a>
                             </div>
                             <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Velocidade internet">
+                                <img src="https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Família conectada">
                                 <div class="hero-image-overlay"></div>
                             </div>
                         </div>
@@ -120,19 +104,15 @@
                     <div class="carousel-slide">
                         <div class="hero-content">
                             <div class="hero-text">
-                                <h1 class="hero-title">
-                                    SUPORTE<br>
-                                    24 HORAS
-                                </h1>
-                                <p class="hero-subtitle">
-                                    Atendimento especializado para resolver qualquer problema
-                                </p>
+                                <h1 class="hero-title">Suporte 24/7</h1>
+                                <p class="hero-subtitle">Nossa equipe especializada está sempre pronta para ajudar. Atendimento rápido e eficiente quando você precisar.</p>
                                 <a href="https://wa.me/5511969013333?text=Olá! Preciso de suporte técnico." target="_blank" class="btn btn-cta">
-                                    Fale conosco
+                                    <i class="fas fa-headset"></i>
+                                    Suporte
                                 </a>
                             </div>
                             <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Suporte técnico">
+                                <img src="https://images.pexels.com/photos/7688336/pexels-photo-7688336.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Suporte técnico">
                                 <div class="hero-image-overlay"></div>
                             </div>
                         </div>
@@ -141,91 +121,211 @@
 
                 <!-- Carousel Controls -->
                 <div class="carousel-controls">
-                    <button class="carousel-control prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-control prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
                     <div class="carousel-indicators">
-                        <button class="carousel-indicator active" data-slide="0"></button>
-                        <button class="carousel-indicator" data-slide="1"></button>
-                        <button class="carousel-indicator" data-slide="2"></button>
+                        <button class="carousel-indicator active"></button>
+                        <button class="carousel-indicator"></button>
+                        <button class="carousel-indicator"></button>
                     </div>
-                    <button class="carousel-control next"><i class="fas fa-chevron-right"></i></button>
+
+                    <button class="carousel-control next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</header>
+
+<!-- Features Bar -->
+<section class="features-bar">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-bolt"></i>
+                <h3>Ultra Velocidade</h3>
+                <p>Até 1GB de velocidade para download e upload</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-shield-alt"></i>
+                <h3>100% Fibra Óptica</h3>
+                <p>Tecnologia de ponta com máxima estabilidade</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-clock"></i>
+                <h3>Instalação Rápida</h3>
+                <p>Técnicos especializados em até 48h</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-headset"></i>
+                <h3>Suporte 24/7</h3>
+                <p>Atendimento especializado sempre disponível</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Advantages Section -->
+<section class="advantages" id="advantages">
+    <div class="container">
+        <div class="advantages-content">
+            <div class="advantages-text">
+                <h2 class="section-title">Por que escolher a <span class="text-blue">Sul Link</span>?</h2>
+                <p class="white">Somos especialistas em conectividade de alta performance, oferecendo soluções completas para residências e empresas com tecnologia de ponta e atendimento personalizado.</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Velocidade Real</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-signal"></i>
+                    <h3>Sinal Estável</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Suporte Técnico</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h3>Melhor Preço</h3>
                 </div>
             </div>
         </div>
     </div>
+</section>
 
-</header>
+<!-- Coverage Section -->
+<section class="coverage" id="coverage">
+    <div class="container">
+        <div class="coverage-content">
+            <div class="coverage-text">
+                <h2 class="section-title">Consulte nossa <span class="text-green">Cobertura</span></h2>
+                <p>Digite seu CEP e descubra se já chegamos na sua região. Estamos expandindo nossa rede de fibra óptica para levar internet de qualidade para mais pessoas.</p>
+            </div>
+
+            <div class="coverage-form">
+                <form id="cepForm" class="cep-form">
+                    <div class="form-group">
+                        <label for="cepInput">Digite seu CEP:</label>
+                        <div class="input-group">
+                            <input
+                                    type="text"
+                                    id="cepInput"
+                                    placeholder="00000-000"
+                                    maxlength="9"
+                                    required
+                            >
+                            <button type="submit" class="btn-search">
+                                <i class="fas fa-search"></i>
+                                Consultar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="cepResult" class="cep-result"></div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Plans Section -->
-<section id="planos" class="plans">
+<section class="plans" id="plans">
     <div class="container">
         <div class="plans-header">
-            <h2 class="section-title white">
-                NOSSOS PLANOS<br>
-                MAIS PEDIDOS
-            </h2>
+            <h2 class="section-title white">Nossos <span class="text-blue">Planos</span></h2>
+            <p class="white">Escolha o plano ideal para sua necessidade. Todos com fibra óptica 100% e suporte técnico incluído.</p>
         </div>
 
         <div class="plans-grid">
             <!-- Plan 1 -->
             <div class="plan-card">
                 <div class="plan-header plan-header-1">
-                    <h3 class="plan-speed">300</h3>
-                    <p class="plan-unit">MEGA</p>
+                    <div class="plan-name">Plano Básico</div>
+                    <div class="plan-speed-container">
+                        <span class="plan-speed">100</span>
+                        <span class="plan-unit">Mbps</span>
+                    </div>
                 </div>
                 <div class="plan-body">
                     <div class="plan-price">
                         <span class="currency">R$</span>
-                        <span class="price">99</span>
-                        <span class="period">,90/mês</span>
+                        <span class="price">79</span>
+                        <span class="period">/mês</span>
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-rocket"></i>
-                            <span>Super velocidade de 300M</span>
+                            <i class="fas fa-check"></i>
+                            <span>Download: 100 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-wifi"></i>
-                            <span>Roteador incluso</span>
+                            <i class="fas fa-check"></i>
+                            <span>Upload: 100 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-tv"></i>
-                            <span>Canais de TV</span>
+                            <i class="fas fa-check"></i>
+                            <span>Instalação gratuita</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Wi-Fi incluso</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Suporte 24/7</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5511969013333?text=Tenho%20interesse%20no%20plano%20300%20MEGA%20-%2099%2C90%2Fm%C3%AAs" class="btn btn-plan" target="_blank">
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o Plano Básico de 100 Mbps por R$ 79/mês." target="_blank" class="btn btn-plan">
+                        <i class="fab fa-whatsapp"></i>
                         Contratar agora
                     </a>
                 </div>
             </div>
 
-            <!-- Plan 2 - Featured -->
+            <!-- Plan 2 -->
             <div class="plan-card plan-featured">
-                <div class="plan-badge">MAIS POPULAR</div>
+                <div class="plan-badge">Mais Popular</div>
                 <div class="plan-header plan-header-2">
-                    <h3 class="plan-speed">600</h3>
-                    <p class="plan-unit">MEGA</p>
+                    <div class="plan-name">Plano Família</div>
+                    <div class="plan-speed-container">
+                        <span class="plan-speed">300</span>
+                        <span class="plan-unit">Mbps</span>
+                    </div>
                 </div>
                 <div class="plan-body">
                     <div class="plan-price">
                         <span class="currency">R$</span>
-                        <span class="price">129</span>
-                        <span class="period">,90/mês</span>
+                        <span class="price">119</span>
+                        <span class="period">/mês</span>
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-rocket"></i>
-                            <span>Super velocidade de 600M</span>
+                            <i class="fas fa-check"></i>
+                            <span>Download: 300 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-wifi"></i>
-                            <span>Roteador incluso</span>
+                            <i class="fas fa-check"></i>
+                            <span>Upload: 300 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-tv"></i>
-                            <span>Canais de TV</span>
+                            <i class="fas fa-check"></i>
+                            <span>Instalação gratuita</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Wi-Fi 6 incluso</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Suporte prioritário</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5511969013333?text=Tenho%20interesse%20no%20plano%20600%20MEGA%20-%20129%2C90%2Fm%C3%AAs" class="btn btn-plan" target="_blank">
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o Plano Família de 300 Mbps por R$ 119/mês." target="_blank" class="btn btn-plan">
+                        <i class="fab fa-whatsapp"></i>
                         Contratar agora
                     </a>
                 </div>
@@ -234,84 +334,44 @@
             <!-- Plan 3 -->
             <div class="plan-card">
                 <div class="plan-header plan-header-3">
-                    <h3 class="plan-speed">800</h3>
-                    <p class="plan-unit">MEGA</p>
+                    <div class="plan-name">Plano Ultra</div>
+                    <div class="plan-speed-container">
+                        <span class="plan-speed">600</span>
+                        <span class="plan-unit">Mbps</span>
+                    </div>
                 </div>
                 <div class="plan-body">
                     <div class="plan-price">
                         <span class="currency">R$</span>
-                        <span class="price">159</span>
-                        <span class="period">,90/mês</span>
+                        <span class="price">179</span>
+                        <span class="period">/mês</span>
                     </div>
                     <div class="plan-features">
                         <div class="plan-feature">
-                            <i class="fas fa-rocket"></i>
-                            <span>Super velocidade de 800M</span>
+                            <i class="fas fa-check"></i>
+                            <span>Download: 600 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-wifi"></i>
-                            <span>Roteador incluso</span>
+                            <i class="fas fa-check"></i>
+                            <span>Upload: 600 Mbps</span>
                         </div>
                         <div class="plan-feature">
-                            <i class="fas fa-tv"></i>
-                            <span>Canais de TV</span>
+                            <i class="fas fa-check"></i>
+                            <span>Instalação gratuita</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Wi-Fi 6E incluso</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Suporte VIP</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/5511969013333?text=Tenho%20interesse%20no%20plano%20800%20MEGA%20-%20159%2C90%2Fm%C3%AAs" class="btn btn-plan" target="_blank">
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o Plano Ultra de 600 Mbps por R$ 179/mês." target="_blank" class="btn btn-plan">
+                        <i class="fab fa-whatsapp"></i>
                         Contratar agora
                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Advantages Section -->
-<section id="sobre" class="advantages">
-    <div class="container">
-        <div class="advantages-content">
-            <div class="advantages-text">
-                <h2 class="section-title">
-                    NOSSAS<br>
-                    <span class="text-blue">VANTAGENS</span>
-                </h2>
-                <a href="#planos" class="btn btn-primary">
-                    <i class="fas fa-eye"></i>
-                    Ver planos
-                </a>
-            </div>
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Instalação imediata</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-dollar-sign"></i>
-                    <h3>Custo benefício</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-wifi"></i>
-                    <h3>Wi-Fi turbo grátis</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Internet Fibra Óptica</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-headphones"></i>
-                    <h3>Atendimento especializado</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-gamepad"></i>
-                    <h3>Internet para games</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-film"></i>
-                    <h3>Entretenimento incluso</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Muito mais velocidade</h3>
                 </div>
             </div>
         </div>
@@ -323,18 +383,12 @@
     <div class="container">
         <div class="entertainment-content">
             <div class="entertainment-text">
-                <h2 class="section-title">
-                    ASSISTA AS SUAS SÉRIES E FILMES<br>
-                    <span class="text-blue" style="color: #38d430">SEM INTERRUPÇÃO</span>
-                </h2>
-                <button class="btn btn-primary">
-                    <i class="fas fa-eye"></i>
-                    Ver planos
-                </button>
+                <h2 class="section-title">Entretenimento sem <span class="white">Limites</span></h2>
+                <p>Desfrute de streaming em 4K, jogos online sem lag, videoconferências em alta definição e muito mais. Nossa fibra óptica garante a melhor experiência digital para toda a família.</p>
             </div>
             <div class="entertainment-image">
                 <div class="image-container">
-                    <img src="https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Pessoa assistindo TV">
+                    <img src="https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Entretenimento digital">
                 </div>
             </div>
         </div>
@@ -342,71 +396,63 @@
 </section>
 
 <!-- Business Section -->
-<section id="empresarial" class="business">
+<section class="business" id="business">
     <div class="container">
         <div class="business-content">
             <div class="business-image">
                 <div class="image-container">
-                    <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Empresário trabalhando">
+                    <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Soluções empresariais">
                 </div>
             </div>
             <div class="business-text">
-                <p class="business-subtitle">MELHORE O DESEMPENHO DA SUA EMPRESA</p>
-                <h2 class="section-title">
-                        <span class="text-blue">CONHEÇA NOSSOS<br>
-                        PLANOS<br>
-                        EMPRESARIAIS</span>
-                </h2>
-                <a href="https://wa.me/5511969013333?text=Olá! Gostaria de saber mais sobre os planos empresariais." target="_blank" class="btn btn-primary">
-                    <i class="fas fa-bullseye"></i>
-                    Saiba mais
+                <div class="business-subtitle">Soluções Corporativas</div>
+                <h2 class="section-title">Internet para <span class="white">Empresas</span></h2>
+                <p>Conectividade empresarial de alta performance com SLA garantido, IP fixo, suporte técnico especializado e soluções personalizadas para o crescimento do seu negócio.</p>
+                <a href="https://wa.me/5511969013333?text=Olá! Gostaria de conhecer as soluções empresariais da Sul Link." target="_blank" class="btn btn-cta">
+                    <i class="fas fa-building"></i>
+                    Soluções Empresariais
                 </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Mission, Vision, Values Section -->
-<section class="company-values">
+<!-- Company Values Section -->
+<section class="company-values" id="values">
     <div class="container">
         <div class="values-header">
-            <h2 class="section-title white">NOSSA EMPRESA</h2>
-            <p class="values-subtitle">Conheça nossos valores e propósito</p>
+            <h2 class="section-title white">Nossos <span class="text-blue">Valores</span></h2>
+            <p class="values-subtitle">Os princípios que nos guiam para oferecer o melhor serviço</p>
         </div>
 
         <div class="values-grid">
-            <!-- Mission -->
-            <div class="value-card">
-                <i class="fas fa-bullseye"></i>
-                <h3>MISSÃO</h3>
-                <p>
-                    Conectar pessoas e empresas através de soluções de internet de alta qualidade,
-                    proporcionando experiências digitais excepcionais que transformam vidas e
-                    impulsionam negócios.
-                </p>
-            </div>
-
-            <!-- Vision -->
             <div class="value-card">
                 <i class="fas fa-eye"></i>
-                <h3>VISÃO</h3>
-                <p>
-                    Ser reconhecida como a principal provedora de internet da região,
-                    referência em inovação tecnológica, qualidade de serviço e
-                    satisfação do cliente até 2030.
-                </p>
+                <h3>Nossa Visão</h3>
+                <div class="values-list">
+                    <p><strong>Ser referência</strong> em conectividade de alta qualidade</p>
+                    <p><strong>Expandir</strong> nossa cobertura para mais regiões</p>
+                    <p><strong>Inovar</strong> constantemente em tecnologia</p>
+                </div>
             </div>
 
-            <!-- Values -->
+            <div class="value-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Nossa Missão</h3>
+                <div class="values-list">
+                    <p><strong>Conectar pessoas</strong> com internet de qualidade</p>
+                    <p><strong>Oferecer suporte</strong> técnico excepcional</p>
+                    <p><strong>Democratizar</strong> o acesso à tecnologia</p>
+                </div>
+            </div>
+
             <div class="value-card">
                 <i class="fas fa-heart"></i>
-                <h3>VALORES</h3>
+                <h3>Nossos Valores</h3>
                 <div class="values-list">
-                    <p>• <strong>Excelência:</strong> Compromisso com a qualidade</p>
-                    <p>• <strong>Inovação:</strong> Tecnologia de ponta</p>
-                    <p>• <strong>Transparência:</strong> Relacionamento honesto</p>
-                    <p>• <strong>Agilidade:</strong> Soluções rápidas</p>
-                    <p>• <strong>Responsabilidade:</strong> Compromisso social</p>
+                    <p><strong>Transparência</strong> em todos os processos</p>
+                    <p><strong>Compromisso</strong> com a qualidade</p>
+                    <p><strong>Respeito</strong> aos nossos clientes</p>
                 </div>
             </div>
         </div>
@@ -417,103 +463,115 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
-            <!-- Company Info -->
-            <div class="footer-section">
-                <h3 class="footer-title">Sul Link</h3>
+            <!-- Logo e Informações -->
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="assets/logo-branco-semfundo.png" alt="Sul Link">
+                </div>
+                <p class="footer-description">
+                    Provedor de internet fibra óptica com tecnologia de ponta,
+                    oferecendo velocidade real e suporte técnico especializado
+                    para residências e empresas.
+                </p>
+            </div>
+
+            <!-- Contato -->
+            <div class="footer-contact-section">
+                <h4 class="footer-subtitle">Contato</h4>
                 <div class="footer-info">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>RUA PAVÃO 24</span>
+                        <div class="info-text">
+                            <span>RUA PAVÃO 24</span>
+                            <span>São Paulo, SP</span>
+                            <span>CEP: 04895-350</span>
+                        </div>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>São Paulo, SP, Brazil</span>
+                        <i class="fas fa-phone"></i>
+                        <div class="info-text">
+                            <span>(11) 96901-3333</span>
+                        </div>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-envelope"></i>
-                        <span>CEP: 04895-350</span>
+                        <div class="info-text">
+                            <span>contato@sullink.com.br</span>
+                        </div>
                     </div>
-                </div>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/share/19fqejPwm6/" class="social-link"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/sul_link.internet" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://g.page/r/CVyTVJ_fspiXEAI/review" target="_blank" class="social-link">
-                        <!-- SVG Gradients for Google Icon -->
-                        <svg style="width:0;height:0;">
-                            <defs>
-                                <linearGradient id="grad1" x1="0%" y1="30%" x2="50%" y2="0%">
-                                    <stop offset="50%" stop-color="#34a853" />
-                                    <stop offset="50%" stop-color="#4285f4" />
-                                </linearGradient>
-                                <linearGradient id="grad2" x1="0%" y1="30%" x2="50%" y2="0%">
-                                    <stop offset="50%" stop-color="#fbbc05" />
-                                    <stop offset="50%" stop-color="#ea4335" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de saber mais sobre os planos de internet." target="_blank" class="social-link whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
-            <!-- Links -->
+            <!-- Navegação -->
             <div class="footer-section">
-                <h4 class="footer-subtitle">Links Úteis</h4>
+                <h4 class="footer-subtitle">Navegação</h4>
                 <ul class="footer-links">
-                    <li><a href="#sobre">Sobre nós</a></li>
-                    <li><a href="#planos">Para você</a></li>
-                    <li><a href="#empresarial">Para sua empresa</a></li>
-                    <li><a href="#cobertura">Cobertura</a></li>
-                    <li><a href="https://wa.me/5511969013333?text=Olá! Preciso de atendimento." target="_blank">Atendimento</a></li>
-                    <li><a href="#politicas">Política de Cookies (BR)</a></li>
-                    <li><a href="#privacidade">Políticas de Privacidade</a></li>
+                    <li><a href="#home">▶ Início</a></li>
+                    <li><a href="#advantages">▶ Vantagens</a></li>
+                    <li><a href="#coverage">▶ Cobertura</a></li>
+                    <li><a href="#plans">▶ Planos</a></li>
+                    <li><a href="#business">▶ Empresarial</a></li>
                 </ul>
             </div>
 
-            <!-- Services -->
+            <!-- Serviços -->
             <div class="footer-section">
                 <h4 class="footer-subtitle">Serviços</h4>
                 <ul class="footer-links">
-                    <li>Internet Fibra Óptica</li>
-                    <li>Wi-Fi</li>
-                    <li>Suporte 24h</li>
-                    <li>Instalação Gratuita</li>
-                    <li>Planos Empresariais</li>
+                    <li><a href="#plans">▶ Internet Residencial</a></li>
+                    <li><a href="#business">▶ Internet Empresarial</a></li>
+                    <li><a href="#coverage">▶ Consulta de Cobertura</a></li>
+                    <li><a href="https://wa.me/5511969013333?text=Olá! Preciso de suporte técnico." target="_blank">▶ Suporte Técnico</a></li>
                 </ul>
             </div>
 
-            <!-- Customer Area -->
-            <div class="footer-section">
+            <!-- Área do Cliente -->
+            <div class="footer-client-area">
                 <h4 class="footer-subtitle">Área do Cliente</h4>
                 <div class="footer-buttons">
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj/segunda-via" target="_blank" class="btn btn-footer">
-                        <i class="fas fa-phone"></i>
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de acessar minha fatura." target="_blank" class="btn btn-footer">
+                        <i class="fas fa-file-invoice"></i>
                         2ª Via da Fatura
                     </a>
-                    <a href="https://www.speedtest.net/" target="_blank" class="btn btn-footer">
-                        <i class="fas fa-bolt"></i>
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de fazer um teste de velocidade." target="_blank" class="btn btn-footer">
+                        <i class="fas fa-tachometer-alt"></i>
                         Teste de Velocidade
                     </a>
-                    <a href="https://sullink.sgp.tsmx.com.br/accounts/central/login?metodo=cpfcnpj/contrato" target="_blank" class="btn btn-footer">
-                        <i class="fas fa-shield-alt"></i>
-                        Contrato SCM
+                    <a href="https://wa.me/5511969013333?text=Olá! Preciso consultar meu contrato." target="_blank" class="btn btn-footer">
+                        <i class="fas fa-file-contract"></i>
+                        Meu Contrato
+                    </a>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.facebook.com/sullink" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/sullink" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/5511969013333?text=Olá! Vim através do site da Sul Link." target="_blank" class="social-link whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
             </div>
         </div>
 
         <div class="footer-bottom">
-            <p>©2025 Sul Link Internet. Todos os direitos reservados. CNPJ 61.348.184/0001-70</p>
-            <p>Desenvolvido por: Vieira, Gabriel</p>
+            <div class="footer-bottom-left">
+                <p>&copy; 2025 Sul Link. Todos os direitos reservados.</p>
+                <p>CNPJ: 00.000.000/0001-00</p>
+            </div>
+            <div class="footer-bottom-right">
+                <p>Desenvolvido por <span style="color: #38d430; font-weight: 600;">Gabriel Vieira</span></p>
+            </div>
         </div>
     </div>
 </footer>
 
-
 <!-- WhatsApp Float Button -->
 <div class="whatsapp-float">
-    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de saber mais sobre os planos de internet." target="_blank" class="whatsapp-float-btn">
+    <a href="https://wa.me/5511969013333?text=Olá! Vim através do site da Sul Link e gostaria de mais informações." target="_blank" class="whatsapp-float-btn">
         <i class="fab fa-whatsapp"></i>
     </a>
 </div>
