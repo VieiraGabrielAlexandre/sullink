@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = carousel.querySelector('.carousel-control.next');
         let currentSlide = 0;
         let slideInterval;
-        
+
         // Function to show a specific slide
         function showSlide(index) {
             // Remove active class from all slides and indicators
@@ -19,54 +19,54 @@ document.addEventListener('DOMContentLoaded', function() {
             indicators.forEach(indicator => {
                 indicator.classList.remove('active');
             });
-            
+
             // Add prev class to the previous slide for animation
             const prevIndex = (index - 1 + slides.length) % slides.length;
             slides[prevIndex].classList.add('prev');
-            
+
             // Add active class to current slide and indicator
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
-            
+
             // Update current slide index
             currentSlide = index;
         }
-        
+
         // Function to go to the next slide
         function nextSlide() {
             const newIndex = (currentSlide + 1) % slides.length;
             showSlide(newIndex);
         }
-        
+
         // Function to go to the previous slide
         function prevSlide() {
             const newIndex = (currentSlide - 1 + slides.length) % slides.length;
             showSlide(newIndex);
         }
-        
+
         // Start automatic slideshow
         function startSlideshow() {
             slideInterval = setInterval(nextSlide, 3500);
         }
-        
+
         // Stop automatic slideshow
         function stopSlideshow() {
             clearInterval(slideInterval);
         }
-        
+
         // Event listeners for controls
         prevBtn.addEventListener('click', function() {
             prevSlide();
             stopSlideshow();
             startSlideshow();
         });
-        
+
         nextBtn.addEventListener('click', function() {
             nextSlide();
             stopSlideshow();
             startSlideshow();
         });
-        
+
         // Event listeners for indicators
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', function() {
@@ -75,22 +75,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 startSlideshow();
             });
         });
-        
+
         // Pause slideshow when hovering over carousel
         carousel.addEventListener('mouseenter', stopSlideshow);
         carousel.addEventListener('mouseleave', startSlideshow);
-        
+
         // Start the slideshow
         startSlideshow();
     }
-    
+
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const menuIcon = mobileMenuBtn.querySelector('i');
 
+    // Debug logs
+    console.log('Mobile menu button:', mobileMenuBtn);
+    console.log('Mobile menu:', mobileMenu);
+    console.log('Button computed style:', window.getComputedStyle(mobileMenuBtn));
+
     mobileMenuBtn.addEventListener('click', function() {
+        console.log('Menu button clicked - event fired');
+        console.log('Menu button clicked');
         mobileMenu.classList.toggle('active');
-        
+        console.log('Menu classes:', mobileMenu.className);
+
+        // Toggle icon
+        if (mobileMenu.classList.contains('active')) {
+            menuIcon.className = 'fas fa-times';
+        } else {
+            menuIcon.className = 'fas fa-bars';
+        }
+    });
+
+    // Add touch event for mobile devices
+    mobileMenuBtn.addEventListener('touchstart', function(e) {
+        console.log('Touch event fired');
+        e.preventDefault();
+        mobileMenu.classList.toggle('active');
+
         // Toggle icon
         if (mobileMenu.classList.contains('active')) {
             menuIcon.className = 'fas fa-times';
@@ -115,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
@@ -153,10 +175,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     setTimeout(() => {
                         entry.target.classList.add('animated');
                     }, index * 150); // Reduced delay for faster animation
-                } else if (entry.target.classList.contains('animate-fade-up') || 
-                           entry.target.classList.contains('animate-fade-left') || 
-                           entry.target.classList.contains('animate-fade-right') || 
-                           entry.target.classList.contains('animate-scale')) {
+                } else if (entry.target.classList.contains('animate-fade-up') ||
+                    entry.target.classList.contains('animate-fade-left') ||
+                    entry.target.classList.contains('animate-fade-right') ||
+                    entry.target.classList.contains('animate-scale')) {
                     // These elements already have animation classes, just add a class to trigger them
                     entry.target.classList.add('animate-start');
                 } else {
@@ -180,14 +202,14 @@ document.addEventListener('DOMContentLoaded', function() {
     planCards.forEach(el => {
         observer.observe(el);
     });
-    
+
     // Add animations to section titles and text
     const sectionTitles = document.querySelectorAll('.section-title');
     sectionTitles.forEach(el => {
         el.classList.add('animate-fade-up');
         observer.observe(el);
     });
-    
+
     // Add animations to business and entertainment text
     const businessText = document.querySelector('.business-text');
     if (businessText) {
@@ -203,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(title);
         }
     }
-    
+
     const entertainmentText = document.querySelector('.entertainment-text');
     if (entertainmentText) {
         const title = entertainmentText.querySelector('.section-title');
@@ -224,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const originalText = this.innerHTML;
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
             this.disabled = true;
-            
+
             setTimeout(() => {
                 this.innerHTML = originalText;
                 this.disabled = false;
@@ -245,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateCounter(element, target, duration = 2000) {
         let start = 0;
         const increment = target / (duration / 16);
-        
+
         function updateCounter() {
             start += increment;
             if (start < target) {
@@ -255,14 +277,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.textContent = target;
             }
         }
-        
+
         updateCounter();
     }
 
     // Trigger counter animation when plans section is visible
     const plansSection = document.querySelector('.plans');
     const planSpeedElements = document.querySelectorAll('.plan-speed');
-    
+
     const plansObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -274,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     if (plansSection) {
         plansObserver.observe(plansSection);
     }
