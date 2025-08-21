@@ -45,7 +45,7 @@ body {
 
 .nav {
     position: relative;
-    z-index: 10;
+    z-index: 5;
     padding: 0.75rem 0;
     position: fixed;
     top: 0;
@@ -62,23 +62,34 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 100px;
+    min-height: 80px;
     position: relative;
     z-index: 1000;
+}
+
+/* Mobile buttons container */
+.mobile-buttons {
+    display: none;
+}
+
+.mobile-btn-small {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 0.5rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 70px;
     transition: all 0.3s ease;
     margin-right: 2rem;
 }
 
 .logo img {
-    height: 90px;
+    height: 200px;
     width: auto;
-    max-width: 320px;
+    max-width: 200px;
     object-fit: contain;
     transition: all 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
@@ -300,7 +311,7 @@ body {
 /* Hero Section with Carousel */
 .hero {
     position: relative;
-    z-index: 5;
+    z-index: 4;
     padding: 8rem 0 2rem 0;
 }
 
@@ -1391,13 +1402,13 @@ text-decoration: none;
 /* Responsive Design */
 @media (max-width: 768px) {
     .logo img {
-        height: 80px;
-        max-width: 240px;
+        height: 200px;
+        max-width: 350px;
     }
 
     .logo {
-        height: 90px;
-        margin-right: 1rem;
+        height: 140px;
+        margin-right: 2rem;
     }
 
     .nav-menu {
@@ -1409,11 +1420,11 @@ text-decoration: none;
     }
 
     .nav-content {
-        min-height: 90px;
+        min-height: 140px;
     }
 
     .hero {
-        padding: 8rem 0 2rem 0;
+        padding: 10rem 0 2rem 0;
     }
 
     .mobile-menu-btn {
@@ -1546,13 +1557,13 @@ text-decoration: none;
 
 @media (max-width: 480px) {
     .logo img {
-        height: 70px;
+        height: 200px;
         max-width: 200px;
     }
 
     .logo {
-        height: 80px;
-        margin-right: 0.5rem;
+        height: 55px;
+        margin-right: 2rem;
     }
 
     .nav {
@@ -1560,11 +1571,11 @@ text-decoration: none;
     }
 
     .nav-content {
-        min-height: 80px;
+        min-height: 65px;
     }
 
     .hero {
-        padding: 7rem 0 2rem 0;
+        padding: 6.5rem 0 2rem 0;
     }
 
     .hero-title {
