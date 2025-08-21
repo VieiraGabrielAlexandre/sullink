@@ -201,33 +201,30 @@
 <!-- Coverage Section -->
 <section class="coverage" id="coverage">
     <div class="container">
-        <div class="coverage-content">
-            <div class="coverage-text">
-                <h2 class="section-title">Consulte nossa <span class="text-green">Cobertura</span></h2>
-                <p>Digite seu CEP e descubra se já chegamos na sua região. Estamos expandindo nossa rede de fibra óptica para levar internet de qualidade para mais pessoas.</p>
+        <div class="coverage-card">
+            <div class="coverage-card-header">
+                <img src="logo-sullink-colorida.png" alt="Sullink Logo" class="coverage-logo" />
+                <h2 class="section-title">Consulte a Cobertura Sullink</h2>
+                <p>Descubra se já temos internet de alta velocidade na sua região. É rápido e sem compromisso!</p>
             </div>
-
-            <div class="coverage-form">
-                <form id="cepForm" class="cep-form">
-                    <div class="form-group">
-                        <label for="cepInput">Digite seu CEP:</label>
-                        <div class="input-group">
-                            <input
-                                    type="text"
-                                    id="cepInput"
-                                    placeholder="00000-000"
-                                    maxlength="9"
-                                    required
-                            >
-                            <button type="submit" class="btn-search">
-                                <i class="fas fa-search"></i>
-                                Consultar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
+            <form id="cepForm" class="coverage-form" autocomplete="off">
+                <label for="cepInput">Digite seu CEP:</label>
+                <div class="input-group">
+                    <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <input type="text" id="cepInput" maxlength="9" placeholder="00000-000" required />
+                    <button type="submit" class="btn btn-search">
+                        <i class="fas fa-search"></i>
+                        <span>Consultar</span>
+                    </button>
+                </div>
                 <div id="cepResult" class="cep-result"></div>
+            </form>
+            <div class="coverage-info">
+                <ul>
+                    <li><i class="fas fa-check-circle text-blue"></i> Instalação rápida e gratuita</li>
+                    <li><i class="fas fa-wifi text-blue"></i> Planos de até 1Gbps</li>
+                    <li><i class="fas fa-headset text-blue"></i> Suporte humanizado</li>
+                </ul>
             </div>
         </div>
     </div>
