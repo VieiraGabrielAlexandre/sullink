@@ -1895,4 +1895,162 @@ text-decoration: none;
         }
     }
 
+    .coverage {
+        padding: 3rem 0;
+    }
+
+    .coverage-form {
+        padding: 1.5rem;
+    }
+
+    .coverage::before,
+    .coverage::after {
+        width: 100px;
+        height: 100px;
+        opacity: 0.3;
+    }
+
+    .coverage-form {
+        background: #fff;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(10,31,51,0.18), 0 1.5px 6px rgba(56,212,48,0.10);
+        padding: 2.5rem 2rem 2rem 2rem;
+        margin: 2.5rem auto 0 auto;
+        max-width: 420px;
+        border: 1.5px solid #e6f7ef;
+        position: relative;
+        z-index: 2;
+        animation: fadeInUp 0.8s cubic-bezier(.23,1.01,.32,1) both;
+        transition: box-shadow 0.3s, border-color 0.3s, transform 0.2s;
+    }
+
+    .coverage-form:hover {
+        box-shadow: 0 16px 40px -8px rgba(0,117,255,0.18), 0 2px 8px rgba(56,212,48,0.10);
+        border-color: #38d430;
+        transform: translateY(-3px) scale(1.02);
+    }
+
+    .coverage-form label {
+        color: #0075ff;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: block;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+    }
+
+    .coverage-form .input-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .coverage-form .input-wrapper {
+        position: relative;
+        flex: 1;
+    }
+
+    .coverage-form .input-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #38d430;
+        font-size: 1.1rem;
+        pointer-events: none;
+        opacity: 0.8;
+        transition: color 0.2s;
+    }
+
+    .coverage-form input[type="text"] {
+        width: 100%;
+        padding: 0.9rem 1rem 0.9rem 2.5rem;
+        border-radius: 0.75rem;
+        border: 1.5px solid #e0e7ef;
+        background: rgba(245, 250, 255, 0.95);
+        font-size: 1.1rem;
+        color: #0a1f33;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        font-weight: 500;
+        box-shadow: 0 1px 2px rgba(0,117,255,0.04);
+    }
+
+    .coverage-form input[type="text"]:focus {
+        border-color: #38d430;
+        background: #fff;
+        box-shadow: 0 0 0 2px #38d43033;
+    }
+
+    .coverage-form .btn-search {
+        background: linear-gradient(135deg, #38d430 0%, #0075ff 100%);
+        color: #fff;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 0.9rem 1.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 12px -2px rgba(56,212,48,0.15);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .coverage-form .btn-search::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(56,212,48,0.15);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s cubic-bezier(.23,1.01,.32,1), height 0.4s cubic-bezier(.23,1.01,.32,1);
+        z-index: 0;
+    }
+
+    .coverage-form .btn-search:hover {
+        background: linear-gradient(135deg, #0075ff 0%, #38d430 100%);
+        transform: translateY(-2px) scale(1.04);
+        box-shadow: 0 8px 24px -4px rgba(0,117,255,0.12);
+    }
+
+    .coverage-form .btn-search:hover::after {
+        width: 200%;
+        height: 200%;
+    }
+
+    .coverage-form .btn-search i {
+        z-index: 1;
+        position: relative;
+    }
+
+    .coverage-form .btn-search span,
+    .coverage-form .btn-search i {
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .coverage-form {
+            padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+            max-width: 100%;
+        }
+    }
 }
