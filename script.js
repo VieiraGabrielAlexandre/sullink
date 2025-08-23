@@ -634,6 +634,43 @@ function typeWriter(element, text, speed = 100) {
     type();
 }
 
+// Funções para modal de canais
+function openChannelsModal(imageName) {
+    const modal = document.getElementById('channelsModal');
+    const image = document.getElementById('channelsImage');
+
+    image.src = `assets/${imageName}`;
+    image.alt = `Lista de Canais - ${imageName}`;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Previne scroll da página
+}
+
+function closeChannelsModal() {
+    const modal = document.getElementById('channelsModal');
+
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Restaura scroll da página
+}
+
+// Fechar modal clicando fora da imagem
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('channelsModal');
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeChannelsModal();
+        }
+    });
+
+    // Fechar modal com tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeChannelsModal();
+        }
+    });
+});
+
 // Initialize typing effect when page loads
 window.addEventListener('load', function() {
     const heroTitles = document.querySelectorAll('.hero-title');

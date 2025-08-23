@@ -262,7 +262,12 @@
                         </div>
                         <div class="plan-feature">
                             <i class="fas fa-check"></i>
-                            <span>Canais de TV</span>
+                            <span>
+                                <button class="channels-btn" onclick="openChannelsModal('canais-1.jpeg')">
+                                    <i class="fas fa-tv"></i>
+                                    Ver Canais Disponíveis
+                                </button>
+                            </span>
                         </div>
                     </div>
                     <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o plano Turbo 300 Mega por R$ 99,90/mês." target="_blank" class="btn btn-plan btn-turbo">
@@ -300,7 +305,12 @@
                         </div>
                         <div class="plan-feature">
                             <i class="fas fa-check"></i>
-                            <span>Canais de TV</span>
+                            <span>
+                                <button class="channels-btn" onclick="openChannelsModal('canais-2.jpeg')">
+                                    <i class="fas fa-tv"></i>
+                                    Ver Canais Disponíveis
+                                </button>
+                            </span>
                         </div>
                     </div>
                     <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o plano Ultra 600 Mega por R$ 129,90/mês." target="_blank" class="btn btn-plan btn-ultra">
@@ -338,7 +348,12 @@
                         </div>
                         <div class="plan-feature">
                             <i class="fas fa-check"></i>
-                            <span>Canais de TV</span>
+                            <span>
+                                <button class="channels-btn" onclick="openChannelsModal('canais-3.jpeg')">
+                                    <i class="fas fa-tv"></i>
+                                    Ver Canais Disponíveis
+                                </button>
+                            </span>
                         </div>
                     </div>
                     <a href="https://wa.me/5511969013333?text=Olá! Gostaria de contratar o plano Hyper 800 Mega por R$ 159,90/mês." target="_blank" class="btn btn-plan btn-hyper">
@@ -351,6 +366,16 @@
         </div>
     </div>
 </section>
+
+<!-- Modal para visualização de canais -->
+<div id="channelsModal" class="channels-modal">
+    <div class="channels-modal-content">
+        <button class="channels-modal-close" onclick="closeChannelsModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="channelsImage" src="" alt="Lista de Canais">
+    </div>
+</div>
 
 <!-- Coverage Section -->
 <section class="coverage" id="coverage">
