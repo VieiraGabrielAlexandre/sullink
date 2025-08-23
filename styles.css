@@ -20,7 +20,7 @@ body {
 /* Header Styles */
 .header {
     position: relative;
-    min-height: 80vh;
+    /*min-height: 80vh;*/
     background: linear-gradient(135deg, #0a1f33 0%, #0075ff 100%);
     color: white;
     overflow: hidden;
@@ -1092,17 +1092,6 @@ body {
     transition: all 0.3s ease;
 }
 
-.coverage-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #38d430 0%, #0075ff 50%, #38d430 100%);
-    border-radius: 2rem 2rem 0 0;
-}
-
 .coverage-card:hover {
     transform: translateY(-5px);
     border-color: #38d430;
@@ -1115,9 +1104,9 @@ body {
 }
 
 .coverage-logo {
-    width: 120px;
-    height: auto;
-    margin-bottom: 1rem;
+    width: 200px;
+    height: 200px;
+    margin-bottom: -3rem;
     filter: brightness(1.1);
 }
 
@@ -1171,7 +1160,7 @@ body {
     border: 2px solid rgba(56, 212, 48, 0.3);
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.1);
-    color: white;
+    color: black;
     font-size: 1.1rem;
     transition: all 0.3s ease;
 }
