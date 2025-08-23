@@ -300,16 +300,57 @@ document.addEventListener('DOMContentLoaded', function() {
     if (plansSection) {
         plansObserver.observe(plansSection);
     }
+
+    // Initialize CEP consultation at the end
+    initCepConsultation();
 });
 
-// CEP Consultation functionality
-document.addEventListener('DOMContentLoaded', function() {
+// CEP Consultation functionality - Moved to end of main DOMContentLoaded
+function initCepConsultation() {
+    console.log('Inicializando consulta de CEP...');
+
+    // CEPs atendidos - embutidos no código para evitar problema de CORS
+    const cepsAtendidos = [
+        "01001-000",
+        "01002-000",
+        "01003-000",
+        "01004-000",
+        "01005-000",
+        "01006-000",
+        "01007-000",
+        "01008-000",
+        "01009-000",
+        "01010-000"
+    ];
+
     const cepForm = document.getElementById('cepForm');
     const cepInput = document.getElementById('cepInput');
     const cepResult = document.getElementById('cepResult');
 
+    console.log('Elementos encontrados:', { cepForm, cepInput, cepResult });
+    console.log('cepForm existe?', !!cepForm);
+    console.log('cepInput existe?', !!cepInput);
+    console.log('cepResult existe?', !!cepResult);
+
+    if (!cepForm || !cepInput || !cepResult) {
+        console.error('Elementos do formulário de CEP não encontrados!');
+        console.log('Todos os elementos com ID no documento:',
+            Array.from(document.querySelectorAll('[id]')).map(el => el.id));
+        return;
+    }
+
+    // Função para mostrar resultado
+    function showResult(type, message) {
+        console.log('Mostrando resultado:', { type, message });
+        cepResult.className = `cep-result ${type}`;
+        cepResult.innerHTML = message;
+        cepResult.style.display = 'block';
+        console.log('Elemento após atualização:', cepResult);
+    }
+
     // Format CEP input
     cepInput.addEventListener('input', function(e) {
+        console.log('Input CEP alterado:', e.target.value);
         let value = e.target.value.replace(/\D/g, '');
         if (value.length > 5) {
             value = value.replace(/^(\d{5})(\d)/, '$1-$2');
@@ -317,101 +358,268 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.value = value;
     });
 
+    // Teste se o formulário existe e adiciona listener
+    console.log('Adicionando event listener ao formulário...');
+    console.log('Tipo do elemento cepForm:', typeof cepForm);
+    console.log('Tag do elemento cepForm:', cepForm ? cepForm.tagName : 'undefined');
+
     // Handle form submission
     cepForm.addEventListener('submit', async function(e) {
+        console.log('Event listener do formulário foi chamado!');
         e.preventDefault();
+        console.log('Formulário de CEP submetido!');
 
         const cep = cepInput.value.replace(/\D/g, '');
+        console.log('CEP digitado:', cep);
 
         if (cep.length !== 8) {
+            console.log('CEP inválido, mostrando erro');
             showResult('error', 'Por favor, digite um CEP válido com 8 dígitos.');
             return;
         }
 
+        console.log('Iniciando consulta...');
         showResult('loading', 'Consultando cobertura...');
 
         try {
-            // Check coverage using the admin API
-            const response = await fetch('admin_api/public/index.php?cep=' + cep, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            // 1. Consultar dados do endereço via ViaCEP
+            console.log('Consultando ViaCEP para CEP:', cep);
+            const viaCepResponse = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
 
-            console.log('Response status:', response.status);
-
-            // Get response text first to see what we're getting
-            const responseText = await response.text();
-            console.log('Response text:', responseText);
-
-            if (response.ok && responseText) {
-                let data;
-                try {
-                    data = JSON.parse(responseText);
-                } catch (parseError) {
-                    console.error('JSON parse error:', parseError);
-                    throw new Error('Resposta inválida do servidor');
-                }
-
-                console.log('API Response:', data);
-
-                if (data && data.length > 0) {
-                    // CEP found - has coverage
-                    showResult('success',
-                        `<div class="result-text">
-                            <i class="fas fa-check-circle"></i>
-                            Ótima notícia! Temos cobertura no seu CEP.
-                        </div>
-                        <div class="result-action">
-                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês têm cobertura. Gostaria de contratar um plano." target="_blank" class="btn-contact">
-                                <i class="fab fa-whatsapp"></i>
-                                Contratar agora
-                            </a>
-                        </div>`
-                    );
-                } else {
-                    // CEP not found - no coverage
-                    showResult('error',
-                        `<div class="result-text">
-                            <i class="fas fa-times-circle"></i>
-                            Ainda não temos cobertura no seu CEP.
-                        </div>
-                        <div class="result-action">
-                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês ainda não têm cobertura. Gostaria de deixar meu contato para quando chegarem na região." target="_blank" class="btn-contact">
-                                <i class="fab fa-whatsapp"></i>
-                                Deixar contato
-                            </a>
-                        </div>`
-                    );
-                }
-            } else {
-                console.error('API Error - Status:', response.status, 'Response:', responseText);
-                throw new Error('Erro na consulta - Status: ' + response.status + ' - ' + responseText);
+            if (!viaCepResponse.ok) {
+                console.error('Erro na resposta do ViaCEP:', viaCepResponse.status);
+                throw new Error('Erro ao consultar dados do CEP');
             }
+
+            const enderecoData = await viaCepResponse.json();
+            console.log('Dados do ViaCEP:', enderecoData);
+
+            if (enderecoData.erro) {
+                console.error('CEP não encontrado no ViaCEP');
+                throw new Error('CEP não encontrado');
+            }
+
+            // 2. Verificar cobertura usando lista embutida
+            console.log('Verificando cobertura com lista embutida...');
+            console.log('CEPs atendidos:', cepsAtendidos);
+
+            // 3. Verificar se o CEP está na lista de atendidos
+            const cepFormatado = cep.substring(0, 5) + '-' + cep.substring(5);
+            const temCobertura = cepsAtendidos.includes(cepFormatado);
+
+            console.log('CEP formatado:', cepFormatado);
+            console.log('Tem cobertura:', temCobertura);
+
+            // 4. Montar endereço completo
+            const enderecoCompleto = `${enderecoData.logradouro}, ${enderecoData.bairro}, ${enderecoData.localidade} - ${enderecoData.uf}`;
+            console.log('Endereço completo:', enderecoCompleto);
+
+            // 5. Exibir resultado
+            if (temCobertura) {
+                console.log('Exibindo resultado de sucesso');
+                // Tem cobertura
+                showResult('success',
+                    `<div class="result-text">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Ótima notícia!</strong> Temos cobertura na sua região.
+                    </div>
+                    <div class="result-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${enderecoCompleto}
+                    </div>
+                    <div class="result-action">
+                        <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} (${enderecoCompleto}) e vocês têm cobertura. Gostaria de contratar um plano." target="_blank" class="btn-contact">
+                            <i class="fab fa-whatsapp"></i>
+                            Contratar agora
+                        </a>
+                    </div>`
+                );
+            } else {
+                console.log('Exibindo resultado de sem cobertura');
+                // Não tem cobertura
+                showResult('error',
+                    `<div class="result-text">
+                        <i class="fas fa-times-circle"></i>
+                        <strong>Ainda não temos cobertura</strong> na sua região.
+                    </div>
+                    <div class="result-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${enderecoCompleto}
+                    </div>
+                    <div class="result-action">
+                        <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} (${enderecoCompleto}) e vocês ainda não têm cobertura. Gostaria de deixar meu contato para quando chegarem na região." target="_blank" class="btn-contact">
+                            <i class="fab fa-whatsapp"></i>
+                            Deixar contato
+                        </a>
+                    </div>`
+                );
+            }
+
         } catch (error) {
             console.error('Erro ao consultar CEP:', error);
+            console.log('Exibindo resultado de erro');
             showResult('error',
                 `<div class="result-text">
                     <i class="fas fa-exclamation-triangle"></i>
-                    Erro ao consultar CEP: ${error.message}. Entre em contato conosco.
+                    <strong>Erro:</strong> ${error.message}
                 </div>
                 <div class="result-action">
                     <a href="https://wa.me/5511969013333?text=Olá! Gostaria de consultar a cobertura para o CEP ${cepInput.value}. Podem me ajudar?" target="_blank" class="btn-contact">
                         <i class="fab fa-whatsapp"></i>
-                        Consultar cobertura
+                        Falar com atendente
                     </a>
                 </div>`
             );
         }
     });
 
-    function showResult(type, message) {
-        cepResult.className = `cep-result ${type}`;
-        cepResult.innerHTML = message;
-    }
-});
+    // Teste adicional - tentar submeter o formulário programaticamente
+    console.log('Testando se o event listener foi adicionado...');
 
+    // Adicionar também um listener de click no botão
+    const submitButton = cepForm.querySelector('button[type="submit"]');
+    console.log('Botão de submit encontrado:', submitButton);
+
+    if (submitButton) {
+        submitButton.addEventListener('click', function(e) {
+            console.log('Botão de submit clicado!');
+            // Forçar o submit do formulário
+            console.log('Tentando forçar submit do formulário...');
+
+            // Prevenir o comportamento padrão do botão
+            e.preventDefault();
+
+            // Disparar manualmente o evento de submit
+            const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+            cepForm.dispatchEvent(submitEvent);
+        });
+    }
+
+    // Adicionar listener diretamente no botão como backup
+    const allButtons = cepForm.querySelectorAll('button');
+    console.log('Todos os botões encontrados no form:', allButtons);
+
+    allButtons.forEach((btn, index) => {
+        console.log(`Botão ${index}:`, btn.type, btn.textContent);
+        btn.addEventListener('click', function(e) {
+            console.log(`Botão ${index} clicado! Tipo:`, btn.type);
+
+            if (btn.type === 'submit' || btn.classList.contains('btn-search')) {
+                console.log('Executando consulta de CEP diretamente...');
+                e.preventDefault();
+
+                // Executar a consulta diretamente
+                consultarCep();
+            }
+        });
+    });
+
+    // Função para executar a consulta de CEP
+    async function consultarCep() {
+        console.log('=== INICIANDO CONSULTA DE CEP ===');
+
+        const cep = cepInput.value.replace(/\D/g, '');
+        console.log('CEP digitado:', cep);
+
+        if (cep.length !== 8) {
+            console.log('CEP inválido, mostrando erro');
+            showResult('error', 'Por favor, digite um CEP válido com 8 dígitos.');
+            return;
+        }
+
+        console.log('Iniciando consulta...');
+        showResult('loading', 'Consultando cobertura...');
+
+        try {
+            // 1. Consultar dados do endereço via ViaCEP
+            console.log('Consultando ViaCEP para CEP:', cep);
+            const viaCepResponse = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+
+            if (!viaCepResponse.ok) {
+                console.error('Erro na resposta do ViaCEP:', viaCepResponse.status);
+                throw new Error('Erro ao consultar dados do CEP');
+            }
+
+            const enderecoData = await viaCepResponse.json();
+            console.log('Dados do ViaCEP:', enderecoData);
+
+            if (enderecoData.erro) {
+                console.error('CEP não encontrado no ViaCEP');
+                throw new Error('CEP não encontrado');
+            }
+
+            // 2. Verificar cobertura usando lista embutida
+            console.log('Verificando cobertura com lista embutida...');
+            console.log('CEPs atendidos:', cepsAtendidos);
+
+            // 3. Verificar se o CEP está na lista de atendidos
+            const cepFormatado = cep.substring(0, 5) + '-' + cep.substring(5);
+            const temCobertura = cepsAtendidos.includes(cepFormatado);
+
+            console.log('CEP formatado:', cepFormatado);
+            console.log('Tem cobertura:', temCobertura);
+
+            // 4. Montar endereço completo
+            const enderecoCompleto = `${enderecoData.logradouro}, ${enderecoData.bairro}, ${enderecoData.localidade} - ${enderecoData.uf}`;
+            console.log('Endereço completo:', enderecoCompleto);
+
+            // 5. Exibir resultado
+            if (temCobertura) {
+                console.log('Exibindo resultado de sucesso');
+                showResult('success',
+                    `<div class="result-text">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>Ótima notícia!</strong> Temos cobertura na sua região.
+                    </div>
+                    <div class="result-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${enderecoCompleto}
+                    </div>
+                    <div class="result-action">
+                        <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} (${enderecoCompleto}) e vocês têm cobertura. Gostaria de contratar um plano." target="_blank" class="btn-contact">
+                            <i class="fab fa-whatsapp"></i>
+                            Contratar agora
+                        </a>
+                    </div>`
+                );
+            } else {
+                console.log('Exibindo resultado de sem cobertura');
+                showResult('error',
+                    `<div class="result-text">
+                        <i class="fas fa-times-circle"></i>
+                        <strong>Ainda não temos cobertura</strong> na sua região.
+                    </div>
+                    <div class="result-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        ${enderecoCompleto}
+                    </div>
+                    <div class="result-action">
+                        <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} (${enderecoCompleto}) e vocês ainda não têm cobertura. Gostaria de deixar meu contato para quando chegarem na região." target="_blank" class="btn-contact">
+                            <i class="fab fa-whatsapp"></i>
+                            Deixar contato
+                        </a>
+                    </div>`
+                );
+            }
+
+        } catch (error) {
+            console.error('Erro ao consultar CEP:', error);
+            console.log('Exibindo resultado de erro');
+            showResult('error',
+                `<div class="result-text">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Erro:</strong> ${error.message}
+                </div>
+                <div class="result-action">
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de consultar a cobertura para o CEP ${cepInput.value}. Podem me ajudar?" target="_blank" class="btn-contact">
+                        <i class="fab fa-whatsapp"></i>
+                        Falar com atendente
+                    </a>
+                </div>`
+            );
+        }
+    }
+}
 // Add typing effect to hero title
 function typeWriter(element, text, speed = 100) {
     let i = 0;

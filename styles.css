@@ -1104,9 +1104,9 @@ body {
 }
 
 .cep-result.error {
-    background: rgba(255, 107, 53, 0.1);
+    background: rgb(255 0 0 / 10%);
     border: 1px solid rgba(255, 107, 53, 0.3);
-    color: #ff6b35;
+    color: #ff0000;
     display: block;
 }
 
@@ -1123,6 +1123,18 @@ body {
     gap: 0.5rem;
     margin-bottom: 1rem;
     font-weight: 600;
+}
+
+.result-address {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
 }
 
 .result-action {
