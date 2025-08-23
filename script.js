@@ -332,10 +332,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             // Check coverage using the admin API
-            const response = await fetch('/admin/public/ceps?cep=' + cep);
+            const response = await fetch('admin_api/public/index.php?cep=' + cep, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
 
-            if (response.ok) {
-                const data = await response.json();
+            console.log('Response status:', response.status);
+
+            // Get response text first to see what we're getting
+            const responseText = await response.text();
+            console.log('Response text:', responseText);
+
+            if (response.ok && responseText) {
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (parseError) {
+                    console.error('JSON parse error:', parseError);
+                    throw new Error('Resposta inválida do servidor');
+                }
+
+                console.log('API Response:', data);
 
                 if (data && data.length > 0) {
                     // CEP found - has coverage
@@ -359,27 +378,28 @@ document.addEventListener('DOMContentLoaded', function() {
                             Ainda não temos cobertura no seu CEP.
                         </div>
                         <div class="result-action">
-                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês ainda não têm cobertura. Quando chegará na minha região?" target="_blank" class="btn-contact">
+                            <a href="https://wa.me/5511969013333?text=Olá! Consultei meu CEP ${cepInput.value} e vocês ainda não têm cobertura. Gostaria de deixar meu contato para quando chegarem na região." target="_blank" class="btn-contact">
                                 <i class="fab fa-whatsapp"></i>
-                                Falar com atendimento
+                                Deixar contato
                             </a>
                         </div>`
                     );
                 }
             } else {
-                throw new Error('Erro na consulta');
+                console.error('API Error - Status:', response.status, 'Response:', responseText);
+                throw new Error('Erro na consulta - Status: ' + response.status + ' - ' + responseText);
             }
         } catch (error) {
             console.error('Erro ao consultar CEP:', error);
             showResult('error',
                 `<div class="result-text">
                     <i class="fas fa-exclamation-triangle"></i>
-                    Erro ao consultar CEP. Tente novamente.
+                    Erro ao consultar CEP: ${error.message}. Entre em contato conosco.
                 </div>
                 <div class="result-action">
-                    <a href="https://wa.me/5511969013333?text=Olá! Tive problemas para consultar meu CEP ${cepInput.value}. Podem me ajudar?" target="_blank" class="btn-contact">
+                    <a href="https://wa.me/5511969013333?text=Olá! Gostaria de consultar a cobertura para o CEP ${cepInput.value}. Podem me ajudar?" target="_blank" class="btn-contact">
                         <i class="fab fa-whatsapp"></i>
-                        Falar com atendimento
+                        Consultar cobertura
                     </a>
                 </div>`
             );
