@@ -1518,7 +1518,7 @@ body {
 
 .channels-modal-content {
     position: relative;
-    max-width: 90%;
+    max-width: 80%;
     max-height: 90%;
     background: white;
     border-radius: 15px;
