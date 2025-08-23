@@ -289,9 +289,12 @@ body {
     animation: slideDown 0.3s ease;
     position: absolute;
     top: 100%;
-    left: 0;
-    right: 0;
+    left: 10px;
+    right: 10px;
+    max-width: calc(100vw - 20px);
     z-index: 1000;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 @keyframes slideDown {
@@ -1567,6 +1570,11 @@ body {
     padding: 0.5rem;
     border-radius: 50%;
     text-decoration: none;
+    min-width: 48px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Facebook icon - blue */
@@ -1828,6 +1836,7 @@ text-decoration: none;
 
     .nav-content {
         min-height: 140px;
+        padding: 0 10px;
     }
 
     .hero {
@@ -1842,6 +1851,42 @@ text-decoration: none;
         display: flex !important;
     }
 
+    .mobile-nav-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .social-links {
+        gap: 0.75rem;
+        margin: 0.5rem 0;
+    }
+
+    .social-link {
+        font-size: 1.5rem;
+        min-width: 40px;
+        min-height: 40px;
+        padding: 0.4rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .footer-main {
+        text-align: center;
+    }
+
+    .footer-contact-section {
+        text-align: center;
+    }
+
+    .footer-buttons {
+        align-items: center;
+        max-width: 300px;
+        margin: 0 auto;
+    }
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1984,7 +2029,7 @@ text-decoration: none;
     }
 
     .social-links {
-        justify-content: center;
+        justify-content: unset;
     }
 
     .features-grid {
@@ -1993,6 +2038,56 @@ text-decoration: none;
 }
 
 @media (max-width: 480px) {
+    .nav-content {
+        gap: 5px;
+        justify-content: space-around;
+        padding: 0 10px;
+    }
+
+    .mobile-menu {
+        left: 5px;
+        right: 5px;
+        max-width: calc(100vw - 10px);
+        padding: 0.75rem;
+    }
+
+    .mobile-nav-link {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .social-links {
+        gap: 0.5rem;
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+        font-size: 1rem;
+    }
+
+    .footer-buttons {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn-footer {
+        width: 100%;
+        text-align: center;
+        min-width: 36px;
+        min-height: 36px;
+        padding: 0.3rem;
+    }
+
+    .footer-buttons {
+        max-width: 250px;
+    }
+
+    .btn-footer {
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+    }
+
     .coverage-card {
         padding: 1.5rem 1rem;
     }
