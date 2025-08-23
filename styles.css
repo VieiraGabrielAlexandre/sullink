@@ -729,12 +729,13 @@ body {
     background: white;
     border-radius: 0.75rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     transform: translateY(30px);
     opacity: 0;
     border: 2px solid rgba(0, 117, 255, 0.2);
+    margin: 20px 10px;
 }
 
 .plan-card.animated {
@@ -746,6 +747,52 @@ body {
     transform: scale(1.05) translateY(-10px);
     box-shadow: 0 30px 60px -15px rgba(0, 117, 255, 0.3);
     border-color: #38d430;
+}
+
+/* Plan Balloons */
+.plan-balloon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    transform: rotate(15deg);
+    background: linear-gradient(135deg, #0075ff 0%, #38d430 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 117, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: balloonFloat 3s ease-in-out infinite;
+}
+
+.plan-balloon-popular {
+    background: linear-gradient(135deg, #38d430 0%, #ff6b35 100%);
+    box-shadow: 0 4px 15px rgba(56, 212, 48, 0.4);
+    animation: balloonPulse 2s ease-in-out infinite;
+}
+
+@keyframes balloonFloat {
+    0%, 100% {
+        transform: rotate(15deg) translateY(0px);
+    }
+    50% {
+        transform: rotate(15deg) translateY(-3px);
+    }
+}
+
+@keyframes balloonPulse {
+    0%, 100% {
+        transform: rotate(15deg) scale(1);
+        box-shadow: 0 4px 15px rgba(56, 212, 48, 0.4);
+    }
+    50% {
+        transform: rotate(15deg) scale(1.05);
+        box-shadow: 0 6px 20px rgba(56, 212, 48, 0.6);
+    }
 }
 
 @keyframes planPulse {
@@ -784,6 +831,15 @@ body {
     color: white;
     text-align: center;
     padding: 2rem;
+    position: relative;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
 }
 
 .plan-header-1 {
@@ -805,6 +861,13 @@ body {
 
 .plan-unit {
     font-size: 1.25rem;
+}
+
+.plan-speed-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
 }
 
 .plan-body {
@@ -849,20 +912,66 @@ body {
 }
 
 .btn-plan {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #38d430 0%, #0075ff 100%);
     color: white;
     padding: 1rem 2rem;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 0.75rem;
-    border: 2px solid rgba(255, 107, 53, 0.3);
-    box-shadow: 0 8px 15px -3px rgba(255, 107, 53, 0.3);
+    border: 2px solid rgba(56, 212, 48, 0.3);
+    box-shadow: 0 8px 15px -3px rgba(56, 212, 48, 0.3);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.btn-turbo {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    border-color: rgba(255, 107, 53, 0.3);
+    box-shadow: 0 8px 15px -3px rgba(255, 107, 53, 0.3);
+}
+
+.btn-ultra {
+    background: linear-gradient(135deg, #38d430 0%, #0075ff 100%);
+    border-color: rgba(56, 212, 48, 0.3);
+    box-shadow: 0 8px 15px -3px rgba(56, 212, 48, 0.3);
+    animation: ultraGlow 2s ease-in-out infinite;
+}
+
+.btn-hyper {
+    background: linear-gradient(135deg, #9c27b0 0%, #e91e63 100%);
+    border-color: rgba(156, 39, 176, 0.3);
+    box-shadow: 0 8px 15px -3px rgba(156, 39, 176, 0.3);
+}
+
+@keyframes ultraGlow {
+    0%, 100% {
+        box-shadow: 0 8px 15px -3px rgba(56, 212, 48, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 25px -3px rgba(56, 212, 48, 0.6), 0 0 30px rgba(56, 212, 48, 0.3);
+    }
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+}
+
+.btn-plan:hover .btn-glow {
+    left: 100%;
 }
 
 .btn-plan::after {
@@ -881,11 +990,20 @@ body {
 }
 
 .btn-plan:hover {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-    color: white;
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px -5px rgba(255, 107, 53, 0.4);
-    border-color: #ff6b35;
+    box-shadow: 0 15px 30px -5px rgba(56, 212, 48, 0.4);
+}
+
+.btn-turbo:hover {
+    box-shadow: 0 15px 30px -5px rgba(255, 107, 53, 0.4);
+}
+
+.btn-ultra:hover {
+    box-shadow: 0 15px 30px -5px rgba(56, 212, 48, 0.4);
+}
+
+.btn-hyper:hover {
+    box-shadow: 0 15px 30px -5px rgba(156, 39, 176, 0.4);
 }
 
 .btn-plan:hover::after {
