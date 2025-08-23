@@ -143,6 +143,25 @@ body {
     width: 100%;
 }
 
+.nav-link-white {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0a1f33 !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link-white::after {
+    background: rgba(56, 212, 48, 0.2);
+}
+
+.nav-link-white:hover {
+    color: #0075ff !important;
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(56, 212, 48, 0.5);
+    box-shadow: 0 4px 12px rgba(56, 212, 48, 0.2);
+}
+
 .btn {
     padding: 0.6rem 1.2rem;
     border: none;
