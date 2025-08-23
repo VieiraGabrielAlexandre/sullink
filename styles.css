@@ -46,7 +46,7 @@ body {
 .nav {
     position: relative;
     z-index: 5;
-    padding: 0.75rem 0;
+    /*padding: 0.75rem 0;*/
     position: fixed;
     top: 0;
     left: 0;
@@ -1160,7 +1160,7 @@ body {
     border: 2px solid rgba(56, 212, 48, 0.3);
     border-radius: 0.75rem;
     background: rgba(255, 255, 255, 0.1);
-    color: black;
+    color: #0089dd;
     font-size: 1.1rem;
     transition: all 0.3s ease;
 }
