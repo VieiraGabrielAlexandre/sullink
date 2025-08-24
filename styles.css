@@ -359,12 +359,16 @@ body {
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: translateX(100%);
+    width: 100%;
+    transition: opacity 0.5s;
 }
 
 .carousel-slide.active {
     opacity: 1;
     transform: translateX(0);
     position: relative;
+    width: 100%;
+    transition: opacity 0.5s;
 }
 
 .carousel-slide.prev {
@@ -508,7 +512,7 @@ body {
 
 /* Features Bar */
 .features-bar {
-    background: linear-gradient(135deg, #1d1d1d 0%, #0a1f33 100%);
+    background: linear-gradient(135deg, #0fdb00 0%, #162c75 100%);
     /*padding: 5rem 0;*/
     color: white;
     position: relative;
@@ -562,6 +566,135 @@ body {
 .feature-item p {
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.875rem;
+}
+
+/* Features Bar Carousel */
+.features-bar {
+    /*padding: 60px 0;*/
+    background: linear-gradient(135deg, #0fdb00 0%, #162c75 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.carousel-infinite {
+    position: relative;
+    height: 400px;
+    display: flex;
+    animation: scroll 15s linear infinite;
+    width: calc(200% + 40px);
+}
+
+.carousel-infinite .carousel-slide {
+    flex: 0 0 calc(50% - 20px);
+    height: 100%;
+    margin: 0 10px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.carousel-infinite .carousel-slide:hover {
+    transform: scale(1);
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.carousel-infinite .carousel-slide:hover img {
+    transform: scale(1.1);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.carousel-infinite:hover {
+    animation-play-state: paused;
+}
+
+/* Controles opcionais (podem ser removidos se não quiser) */
+.features-bar .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.features-bar .carousel-control:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.features-bar .carousel-control.prev {
+    left: 20px;
+}
+
+.features-bar .carousel-control.next {
+    right: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .features-bar {
+        padding: 40px 0;
+        padding-bottom: 0px;
+    }
+
+    .carousel-infinite {
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    .features-bar .carousel-control {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-bar {
+        padding: 30px 0;
+        padding-bottom: 0px;
+    }
+
+    .carousel-infinite {
+        height: 250px;
+        border-radius: 8px;
+    }
+
+    .features-bar .carousel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
 }
 
 /* Features Bar Section */

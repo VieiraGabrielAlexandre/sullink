@@ -661,86 +661,35 @@ function openChannelsModal(imageName) {
     image.alt = `Lista de Canais - ${imageName}`;
 
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Previne scroll da página
-}
+    // O carousel agora é puramente CSS com animação infinita
+    // Pausa a animação ao hover (já definido no CSS)
+    console.log('Carousel infinito inicializado com sucesso!');
 
-function closeChannelsModal() {
-    const modal = document.getElementById('channelsModal');
-
-    modal.classList.remove('active');
-    document.body.style.overflow = 'auto'; // Restaura scroll da página
-}
-
-// Fechar modal clicando fora da imagem
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('channelsModal');
-
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeChannelsModal();
-        }
-    });
-
-    // Fechar modal com tecla ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeChannelsModal();
-        }
-    });
-});
-
-// Carrossel da seção de entretenimento
-const entertainmentCarousel = document.querySelector('.entertainment-image .image-carousel');
-if (entertainmentCarousel) {
-    const slides = entertainmentCarousel.querySelectorAll('.carousel-slide');
-    let currentSlide = 0;
-
-    if (slides.length > 0) {
-        stopAutoplay();
-        nextSlide();
-        startAutoplay();
-        if (index >= slides.length) index = 0;
-        if (index < 0) index = slides.length - 1;
-
-        // Event listeners para indicadores
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', function(e) {
-                e.preventDefault();
-                stopAutoplay();
-                showSlide(index);
-                startAutoplay();
-            });
-        });
-
-        // Pausar autoplay ao passar o mouse
-        featuresCarousel.addEventListener('mouseenter', stopAutoplay);
-        featuresCarousel.addEventListener('mouseleave', startAutoplay);
-
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        currentSlide = index;
-    }
-
+    // Opcional: adicionar controles manuais se necessário
     const prevBtn = document.querySelector('.features-bar .carousel-control.prev');
     const nextBtn = document.querySelector('.features-bar .carousel-control.next');
 
     if (prevBtn) {
-        prevBtn.onclick = () => {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        };
+        prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Pausa temporariamente a animação
+            featuresCarousel.style.animationPlayState = 'paused';
+            setTimeout(() => {
+                featuresCarousel.style.animationPlayState = 'running';
+            }, 2000);
+        });
     }
 
     if (nextBtn) {
-        nextBtn.onclick = () => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        };
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Acelera temporariamente a animação
+            featuresCarousel.style.animationDuration = '5s';
+            setTimeout(() => {
+                featuresCarousel.style.animationDuration = '15s';
+            }, 1000);
+        });
     }
-
-    // Initialize
-    startAutoplay();
     showSlide(0);
 }
 
