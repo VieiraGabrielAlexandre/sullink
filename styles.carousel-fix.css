@@ -1,0 +1,69 @@
+
+/* === Carousel Fixes / Minimal Additions === */
+
+/* Features carousel */
+.features-carousel{
+  position:relative;
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  overflow:hidden;
+  border-radius:16px;
+  box-shadow:0 20px 40px rgba(0,0,0,.1);
+}
+.features-carousel .features-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .5s ease;
+}
+.features-carousel .features-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.features-carousel .features-slide.active{
+  position:relative;
+  opacity:1;
+}
+.features-carousel .features-control{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:rgba(255,255,255,.9);
+  color:#333;
+  border:none;
+  width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .3s ease;z-index:10;
+}
+.features-carousel .features-control:hover{ background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+.features-carousel .features-control.prev{ left:16px; }
+.features-carousel .features-control.next{ right:16px; }
+.features-carousel .features-indicators{
+  position:absolute;left:50%;bottom:12px;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:10;
+}
+.features-carousel .features-indicator{
+  width:12px;height:12px;border-radius:50%;
+  background:rgba(255,255,255,.5);border:none;cursor:pointer;transition:all .2s;
+}
+.features-carousel .features-indicator.active{ background:#fff; transform:scale(1.2); }
+
+/* Entertainment carousel */
+.entertainment-carousel{ position:relative; overflow:hidden; border-radius:12px; }
+.entertainment-carousel .entertainment-slide{ display:none; }
+.entertainment-carousel .entertainment-slide.active{ display:block; }
+.entertainment-carousel .entertainment-control{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,.9); border:none; width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center; cursor:pointer; z-index:5;
+}
+.entertainment-carousel .entertainment-control.prev{ left:12px; }
+.entertainment-carousel .entertainment-control.next{ right:12px; }
+
+@media (max-width: 768px){
+  .features-carousel .features-control{ width:40px; height:40px; }
+  .entertainment-carousel .entertainment-control{ width:38px; height:38px; }
+}

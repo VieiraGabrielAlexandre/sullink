@@ -1,12 +1,12 @@
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
-    // Carousel functionality
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-        const slides = carousel.querySelectorAll('.carousel-slide');
-        const indicators = carousel.querySelectorAll('.carousel-indicator');
-        const prevBtn = carousel.querySelector('.carousel-control.prev');
-        const nextBtn = carousel.querySelector('.carousel-control.next');
+    // Features Bar Carousel functionality
+    const featuresCarousel = document.querySelector('.features-carousel');
+    if (featuresCarousel) {
+        const slides = featuresCarousel.querySelectorAll('.features-slide');
+        const indicators = featuresCarousel.querySelectorAll('.features-indicator');
+        const prevBtn = featuresCarousel.querySelector('.features-control.prev');
+        const nextBtn = featuresCarousel.querySelector('.features-control.next');
         let currentSlide = 0;
         let slideInterval;
 
@@ -82,8 +82,85 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Pause slideshow when hovering over carousel
-        carousel.addEventListener('mouseenter', stopSlideshow);
-        carousel.addEventListener('mouseleave', startSlideshow);
+        featuresCarousel.addEventListener('mouseenter', stopSlideshow);
+        featuresCarousel.addEventListener('mouseleave', startSlideshow);
+
+        // Initialize carousel
+        showSlide(0);
+        startSlideshow();
+    }
+
+    // Entertainment Carousel functionality
+    const entertainmentCarousel = document.querySelector('.entertainment-carousel');
+    if (entertainmentCarousel) {
+        const slides = entertainmentCarousel.querySelectorAll('.entertainment-slide');
+        const prevBtn = entertainmentCarousel.querySelector('.entertainment-control.prev');
+        const nextBtn = entertainmentCarousel.querySelector('.entertainment-control.next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Ensure index is within bounds
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+
+            // Remove active class from all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Add active class to current slide
+            slides[index].classList.add('active');
+
+            // Update current slide index
+            currentSlide = index;
+        }
+
+        // Function to go to the next slide
+        function nextSlide() {
+            const newIndex = currentSlide + 1;
+            showSlide(newIndex);
+        }
+
+        // Function to go to the previous slide
+        function prevSlide() {
+            const newIndex = currentSlide - 1;
+            showSlide(newIndex);
+        }
+
+        // Start automatic slideshow
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        // Stop automatic slideshow
+        function stopSlideshow() {
+            clearInterval(slideInterval);
+        }
+
+        // Event listeners for controls
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                prevSlide();
+                stopSlideshow();
+                startSlideshow();
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                nextSlide();
+                stopSlideshow();
+                startSlideshow();
+            });
+        }
+
+        // Pause slideshow when hovering over carousel
+        entertainmentCarousel.addEventListener('mouseenter', stopSlideshow);
+        entertainmentCarousel.addEventListener('mouseleave', startSlideshow);
 
         // Initialize carousel
         showSlide(0);

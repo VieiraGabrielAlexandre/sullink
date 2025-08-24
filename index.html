@@ -13,7 +13,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- seu atual -->
+    <link rel="stylesheet" href="styles.carousel-fix.css"> <!-- novo -->
+    <link rel="stylesheet" href="styles.carousel-fixed-height.css"> <!-- novo -->
+    <link rel="stylesheet" href="styles.carousel-fullbleed.css"> <!-- novo -->
+
 </head>
 <body>
 <!-- Navigation -->
@@ -71,76 +75,32 @@
 </nav>
 
 <!-- Features Bar -->
-<section class="features-bar">
+<section class="features-bar" id="featuresSection">
     <div class="container">
-        <div class="image-carousel">
-            <button class="carousel-control prev">&#10094;</button>
-            <div class="carousel-slide active">
-                <img src="assets/carrousel-1.png" alt="Imagem 1">
-            </div>
-            <div class="carousel-slide">
-                <img src="assets/carrousel-2.png" alt="Imagem 2">
-            </div>
-            <div class="carousel-slide">
-                <img src="assets/carrousel-3.png" alt="Imagem 3">
-            </div>
-            <div class="carousel-slide">
-                <img src="assets/carrousel-1.png" alt="Imagem 4">
-            </div>
-            <button class="carousel-control next">&#10095;</button>
-            <div class="carousel-indicators">
-                <button class="carousel-indicator active" data-slide="0"></button>
-                <button class="carousel-indicator" data-slide="1"></button>
-                <button class="carousel-indicator" data-slide="2"></button>
-                <button class="carousel-indicator" data-slide="3"></button>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Advantages Section -->
-<section class="advantages" id="advantages">
-    <div class="container">
-        <div class="advantages-content">
-            <div class="advantages-text">
-                <h2 class="section-title">Por que escolher a <span class="text-blue">Sul Link</span>?</h2>
-                <p class="hero-subtitle">Oferecemos a melhor experiência em internet com tecnologia de ponta e atendimento personalizado.</p>
-            </div>
-            <div class="advantages-grid">
-                <div class="advantage-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Velocidade Real</h3>
+        <section class="hero full-bleed">
+            <div class="features-carousel">
+                <button class="features-control prev">&#10094;</button>
+                <div class="features-slide active">
+                    <source srcset="assets/carrousel-1.webp" type="image/webp">
+                    <img src="assets/carrousel-1.png" alt="Imagem 1">
                 </div>
-                <div class="advantage-card">
-                    <i class="fas fa-wifi"></i>
-                    <h3>Roteador Incluso</h3>
+                <div class="features-slide">
+                    <source srcset="assets/carrousel-2.webp" type="image/webp">
+                    <img src="assets/carrousel-2.png" alt="Imagem 2">
                 </div>
-                <div class="advantage-card">
-                    <i class="fas fa-tv"></i>
-                    <h3>Canais de TV</h3>
+                <div class="features-slide">
+                    <source srcset="assets/carrousel-3.webp" type="image/webp">
+                    <img src="assets/carrousel-3.png" alt="Imagem 3">
                 </div>
-                <div class="advantage-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Instalação Grátis</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Sem Fidelidade</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Suporte 24h</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Conexão Segura</h3>
-                </div>
-                <div class="advantage-card">
-                    <i class="fas fa-medal"></i>
-                    <h3>Qualidade Premium</h3>
+                <button class="features-control next">&#10095;</button>
+                <div class="features-indicators">
+                    <button class="features-indicator active" data-slide="0"></button>
+                    <button class="features-indicator" data-slide="1"></button>
+                    <button class="features-indicator" data-slide="2"></button>
+                    <button class="features-indicator" data-slide="3"></button>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </section>
 
@@ -285,6 +245,52 @@
     </div>
 </section>
 
+<!-- Advantages Section -->
+<section class="advantages" id="advantages">
+    <div class="container">
+        <div class="advantages-content">
+            <div class="advantages-text">
+                <h2 class="section-title">Por que escolher a <span class="text-blue">Sul Link</span>?</h2>
+                <p class="hero-subtitle">Oferecemos a melhor experiência em internet com tecnologia de ponta e atendimento personalizado.</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Velocidade Real</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-wifi"></i>
+                    <h3>Roteador Incluso</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-tv"></i>
+                    <h3>Canais de TV</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Instalação Grátis</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Sem Fidelidade</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Suporte 24h</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Conexão Segura</h3>
+                </div>
+                <div class="advantage-card">
+                    <i class="fas fa-medal"></i>
+                    <h3>Qualidade Premium</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Modal para visualização de canais -->
 <div id="channelsModal" class="channels-modal">
     <div class="channels-modal-content">
@@ -346,18 +352,18 @@
                 </a>
             </div>
             <div class="entertainment-image">
-                <div class="image-carousel">
-                    <div class="carousel-slide active">
+                <div class="entertainment-carousel">
+                    <div class="entertainment-slide active">
                         <img src="https://images.pexels.com/photos/4009402/pexels-photo-4009402.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Entretenimento 1">
                     </div>
-                    <div class="carousel-slide">
+                    <div class="entertainment-slide">
                         <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Entretenimento 2">
                     </div>
-                    <div class="carousel-slide">
-                        <img src="https://images.pexels.com/photos/276528/pexels-photo-276528.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Entretenimento 3">
+                    <div class="entertainment-slide">
+                        <img src="https://images.pexels.com/photos/276521/pexels-photo-276521.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Entretenimento 3">
                     </div>
-                    <button class="carousel-control prev">&#10094;</button>
-                    <button class="carousel-control next">&#10095;</button>
+                    <button class="entertainment-control prev">&#10094;</button>
+                    <button class="entertainment-control next">&#10095;</button>
                 </div>
             </div>
         </div>
@@ -544,6 +550,8 @@
 
 <!-- JavaScript -->
 <script src="script.js"></script>
+<script src="script.carousel-fix.js"></script>
+
 <script>
     const slides = document.querySelectorAll('.carousel-slide');
     let currentSlide = 0;
