@@ -671,6 +671,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Carrossel da seção de entretenimento
+const entertainmentCarousel = document.querySelector('.entertainment-image .image-carousel');
+if (entertainmentCarousel) {
+    const slides = entertainmentCarousel.querySelectorAll('.carousel-slide');
+    const prevBtn = entertainmentCarousel.querySelector('.carousel-control.prev');
+    const nextBtn = entertainmentCarousel.querySelector('.carousel-control.next');
+    let current = 0;
+
+    function showSlide(idx) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === idx);
+        });
+        current = idx;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        showSlide((current - 1 + slides.length) % slides.length);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        showSlide((current + 1) % slides.length);
+    });
+
+    // Opcional: autoplay
+    // setInterval(() => nextBtn.click(), 5000);
+}
+
 // Initialize typing effect when page loads
 window.addEventListener('load', function() {
     const heroTitles = document.querySelectorAll('.hero-title');

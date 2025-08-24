@@ -2677,4 +2677,59 @@ text-decoration: none;
         padding: 5px 10px;
         font-size: 0.75rem;
     }
+
+    .entertainment-image .image-carousel {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+
+    .entertainment-image .carousel-slide {
+        display: none;
+        width: 100%;
+        height: 100%;
+        transition: opacity 0.5s;
+    }
+
+    .entertainment-image .carousel-slide.active {
+        display: block;
+    }
+
+    .entertainment-image .carousel-slide img {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+    }
+
+    .entertainment-image .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(37,99,235,0.7);
+        color: #fff;
+        border: none;
+        font-size: 2rem;
+        padding: 0 12px;
+        cursor: pointer;
+        z-index: 2;
+        border-radius: 50%;
+        transition: background 0.2s;
+    }
+
+    .entertainment-image .carousel-control.prev {
+        left: 0;
+        border-radius: 0 50% 50% 0;
+    }
+
+    .entertainment-image .carousel-control.next {
+        right: 0;
+        border-radius: 50% 0 0 50%;
+    }
+
+    .entertainment-image .carousel-control:hover {
+        background: #2563eb;
+    }
 }
