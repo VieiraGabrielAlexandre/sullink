@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevBtn = carousel.querySelector('.carousel-control.prev');
         const nextBtn = carousel.querySelector('.carousel-control.next');
         let currentSlide = 0;
+        let autoplayInterval;
         let slideInterval;
 
         // Function to show a specific slide
@@ -170,139 +171,156 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 if (entry.target.classList.contains('plan-card')) {
                     // Add animated class with a delay based on index for staggered effect
-                    const planCards = document.querySelectorAll('.plan-card');
-                    const index = Array.from(planCards).indexOf(entry.target);
-                    setTimeout(() => {
-                        entry.target.classList.add('animated');
-                    }, index * 150); // Reduced delay for faster animation
-                } else if (entry.target.classList.contains('animate-fade-up') ||
-                    entry.target.classList.contains('animate-fade-left') ||
-                    entry.target.classList.contains('animate-fade-right') ||
-                    entry.target.classList.contains('animate-scale')) {
-                    // These elements already have animation classes, just add a class to trigger them
-                    entry.target.classList.add('animate-start');
-                } else {
-                    // Fallback for elements without specific animation classes
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const advantageCards = document.querySelectorAll('.advantage-card, .value-card');
-    advantageCards.forEach((el, index) => {
-        el.classList.add('animate-scale');
-        el.classList.add(`delay-${(index % 3 + 1) * 100}`);
-        observer.observe(el);
-    });
-    // Observe plan cards separately (they have CSS animations)
-    const planCards = document.querySelectorAll('.plan-card');
-    planCards.forEach(el => {
-        observer.observe(el);
-    });
-
-    // Add animations to section titles and text
-    const sectionTitles = document.querySelectorAll('.section-title');
-    sectionTitles.forEach(el => {
-        el.classList.add('animate-fade-up');
-        observer.observe(el);
-    });
-
-    // Add animations to business and entertainment text
-    const businessText = document.querySelector('.business-text');
-    if (businessText) {
-        const subtitle = businessText.querySelector('.business-subtitle');
-        const title = businessText.querySelector('.section-title');
-        if (subtitle) {
-            subtitle.classList.add('animate-fade-left');
-            observer.observe(subtitle);
-        }
-        if (title) {
-            title.classList.add('animate-fade-up');
-            title.classList.add('delay-100');
-            observer.observe(title);
-        }
-    }
-
-    const entertainmentText = document.querySelector('.entertainment-text');
-    if (entertainmentText) {
-        const title = entertainmentText.querySelector('.section-title');
-        if (title) {
-            title.classList.add('animate-fade-right');
-            observer.observe(title);
-        }
-    }
-
-    // WhatsApp button is now a direct link in the social-links section
-
-    // Plan buttons are now direct links to WhatsApp with pre-filled messages
-
-    // Add loading animation to buttons (excluding plan buttons which are now direct links)
-    const buttons = document.querySelectorAll('.btn:not(.btn-plan)');
-    buttons.forEach(button => {
-        button.addEventListener('click', function() {
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
-            this.disabled = true;
-
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
-            }, 2000);
-        });
-    });
-
-    // Add parallax effect to hero background
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const headerBg = document.querySelector('.header-bg');
-        if (headerBg) {
-            headerBg.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-    });
-
-    // Add counter animation for plan speeds
-    function animateCounter(element, target, duration = 2000) {
-        let start = 0;
-        const increment = target / (duration / 16);
-
-        function updateCounter() {
-            start += increment;
-            if (start < target) {
-                element.textContent = Math.floor(start);
-                requestAnimationFrame(updateCounter);
+                    // Garantir que o índice está dentro dos limites
+                    index = ((index % slides.length) + slides.length) % slides.length;
+                    entry.target.classList.add('animated');
+                }, index * 150); // Reduced delay for faster animation
+            } else if (entry.target.classList.contains('animate-fade-up') ||
+                entry.target.classList.contains('animate-fade-left') ||
+                entry.target.classList.contains('animate-fade-right') ||
+                entry.target.classList.contains('animate-scale')) {
+                // These elements already have animation classes, just add a class to trigger them
             } else {
-                element.textContent = target;
+                // Fallback for elements without specific animation classes
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         }
+    });
+}, observerOptions);
 
-        updateCounter();
+// Observe elements for animation
+const advantageCards = document.querySelectorAll('.advantage-card, .value-card');
+advantageCards.forEach((el, index) => {
+    el.classList.add('animate-scale');
+    el.classList.add(`delay-${(index % 3 + 1) * 100}`);
+    observer.observe(el);
+});
+// Observe plan cards separately (they have CSS animations)
+const planCards = document.querySelectorAll('.plan-card');
+planCards.forEach(el => {
+    observer.observe(el);
+});
+
+// Add animations to section titles and text
+const sectionTitles = document.querySelectorAll('.section-title');
+sectionTitles.forEach(el => {
+    el.classList.add('animate-fade-up');
+    observer.observe(el);
+});
+
+// Add animations to business and entertainment text
+const businessText = document.querySelector('.business-text');
+if (businessText) {
+    const subtitle = businessText.querySelector('.business-subtitle');
+    const title = businessText.querySelector('.section-title');
+    if (subtitle) {
+        subtitle.classList.add('animate-fade-left');
+        observer.observe(subtitle);
+    }
+    if (title) {
+        title.classList.add('animate-fade-up');
+        title.classList.add('delay-100');
+        observer.observe(title);
+    }
+}
+
+const entertainmentText = document.querySelector('.entertainment-text');
+if (entertainmentText) {
+    const title = entertainmentText.querySelector('.section-title');
+    if (title) {
+        title.classList.add('animate-fade-right');
+        observer.observe(title);
+    }
+}
+
+// WhatsApp button is now a direct link in the social-links section
+
+// Plan buttons are now direct links to WhatsApp with pre-filled messages
+
+// Add loading animation to buttons (excluding plan buttons which are now direct links)
+const buttons = document.querySelectorAll('.btn:not(.btn-plan)');
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
+        this.disabled = true;
+
+        setTimeout(() => {
+            this.innerHTML = originalText;
+            this.disabled = false;
+        }, 2000);
+    });
+});
+
+// Add parallax effect to hero background
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const headerBg = document.querySelector('.header-bg');
+    if (headerBg) {
+        headerBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// Add counter animation for plan speeds
+function animateCounter(element, target, duration = 2000) {
+    let start = 0;
+    const increment = target / (duration / 16);
+
+    function updateCounter() {
+        start += increment;
+        if (start < target) {
+            element.textContent = Math.floor(start);
+            requestAnimationFrame(updateCounter);
+        } else {
+            element.textContent = target;
+        }
     }
 
-    // Trigger counter animation when plans section is visible
-    const plansSection = document.querySelector('.plans');
-    const planSpeedElements = document.querySelectorAll('.plan-speed');
+    updateCounter();
+}
 
-    const plansObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                planSpeedElements.forEach(el => {
-                    const target = parseInt(el.textContent);
-                    animateCounter(el, target);
-                });
-                plansObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
+// Trigger counter animation when plans section is visible
+const plansSection = document.querySelector('.plans');
+const planSpeedElements = document.querySelectorAll('.plan-speed');
 
-    if (plansSection) {
-        plansObserver.observe(plansSection);
+const plansObserver = new IntersectionObserver(function(entries) {
+    function nextSlide() {
+        showSlide(currentSlide + 1);
     }
 
-    // Initialize CEP consultation at the end
-    initCepConsultation();
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+        }
+    }
+
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            planSpeedElements.forEach(el => {
+                stopAutoplay();
+                prevSlide();
+                startAutoplay();
+            });
+            plansObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+if (plansSection) {
+    plansObserver.observe(plansSection);
+}
+
+// Initialize CEP consultation at the end
+initCepConsultation();
 });
 
 // CEP Consultation functionality - Moved to end of main DOMContentLoaded
@@ -675,27 +693,59 @@ document.addEventListener('DOMContentLoaded', function() {
 const entertainmentCarousel = document.querySelector('.entertainment-image .image-carousel');
 if (entertainmentCarousel) {
     const slides = entertainmentCarousel.querySelectorAll('.carousel-slide');
-    const prevBtn = entertainmentCarousel.querySelector('.carousel-control.prev');
-    const nextBtn = entertainmentCarousel.querySelector('.carousel-control.next');
-    let current = 0;
+    let currentSlide = 0;
 
-    function showSlide(idx) {
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === idx);
+    if (slides.length > 0) {
+        stopAutoplay();
+        nextSlide();
+        startAutoplay();
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+
+        // Event listeners para indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function(e) {
+                e.preventDefault();
+                stopAutoplay();
+                showSlide(index);
+                startAutoplay();
+            });
         });
-        current = idx;
+
+        // Pausar autoplay ao passar o mouse
+        featuresCarousel.addEventListener('mouseenter', stopAutoplay);
+        featuresCarousel.addEventListener('mouseleave', startAutoplay);
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        currentSlide = index;
     }
 
-    prevBtn.addEventListener('click', () => {
-        showSlide((current - 1 + slides.length) % slides.length);
-    });
+    const prevBtn = document.querySelector('.features-bar .carousel-control.prev');
+    const nextBtn = document.querySelector('.features-bar .carousel-control.next');
 
-    nextBtn.addEventListener('click', () => {
-        showSlide((current + 1) % slides.length);
-    });
+    if (prevBtn) {
+        prevBtn.onclick = () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        };
+    }
 
-    // Opcional: autoplay
-    // setInterval(() => nextBtn.click(), 5000);
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
+    }
+
+    // Initialize
+    startAutoplay();
+    showSlide(0);
+}
+
+// Opcional: autoplay
+// setInterval(() => nextBtn.click(), 5000);
 }
 
 // Initialize typing effect when page loads

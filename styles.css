@@ -509,7 +509,7 @@ body {
 /* Features Bar */
 .features-bar {
     background: linear-gradient(135deg, #1d1d1d 0%, #0a1f33 100%);
-    padding: 5rem 0;
+    /*padding: 5rem 0;*/
     color: white;
     position: relative;
     overflow: hidden;
@@ -562,6 +562,175 @@ body {
 .feature-item p {
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.875rem;
+}
+
+/* Features Bar Section */
+.features-bar {
+    /*padding: 60px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-bottom: 1px solid #e2e8f0;*/
+    position: relative;
+}
+
+.features-bar .container {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 0;
+}
+
+.features-bar .image-carousel {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    /*border-radius: 15px;*/
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.features-bar .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.features-bar .carousel-slide.active {
+    opacity: 1;
+}
+
+.features-bar .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    object-position: center;
+}
+
+.features-bar .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: #2563eb;
+    transition: all 0.3s ease;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.features-bar .carousel-control:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.features-bar .carousel-control.prev {
+    left: 20px;
+}
+
+.features-bar .carousel-control.next {
+    right: 20px;
+}
+
+.image-carousel .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.image-carousel .carousel-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-carousel .carousel-indicator.active {
+    background: white;
+    border-color: white;
+}
+
+.image-carousel .carousel-indicator:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
+}
+
+/* Responsive para features-bar */
+@media (max-width: 768px) {
+    .features-bar {
+        padding: 40px 0;
+    }
+
+    .features-bar .image-carousel {
+        height: 300px;
+        border-radius: 10px;
+    }
+
+    .features-bar .carousel-control {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .features-bar .carousel-control.prev {
+        left: 15px;
+    }
+
+    .features-bar .carousel-control.next {
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .features-bar {
+        padding: 30px 0;
+    }
+
+    .features-bar .image-carousel {
+        height: 250px;
+        border-radius: 8px;
+    }
+
+    .features-bar .carousel-control {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .features-bar .carousel-control.prev {
+        left: 10px;
+    }
+
+    .features-bar .carousel-control.next {
+        right: 10px;
+    }
 }
 
 /* Advantages Section */
@@ -755,7 +924,7 @@ body {
     transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
     transform: translateY(30px);
-    opacity: 0;
+    /*opacity: 0;*/
     border: 2px solid rgba(0, 117, 255, 0.2);
     margin: 20px 10px;
 }
