@@ -435,7 +435,6 @@ body {
     font-weight: bold;
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s forwards 0.2s;
     background: linear-gradient(135deg, white 0%, #38d430 100%);
@@ -448,7 +447,6 @@ body {
     font-size: 1.25rem;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 2rem;
-    opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.5s forwards 0.3s;
 }
@@ -462,7 +460,6 @@ body {
 
 .hero-image {
     position: relative;
-    opacity: 0;
     transform: translateX(20px);
     animation: fadeInRight 0.5s forwards 0.4s;
 }
@@ -578,51 +575,38 @@ body {
     overflow: hidden;
 }
 
-.carousel-infinite {
+.features-bar .image-carousel {
     position: relative;
-    height: 400px;
-    display: flex;
-    animation: scroll 15s linear infinite;
-    width: calc(200% + 40px);
-}
-
-.carousel-infinite .carousel-slide {
-    flex: 0 0 calc(50% - 20px);
-    height: 100%;
-    margin: 0 10px;
-    border-radius: 15px;
+    width: 100%;
+    height: 50vh;
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-infinite .carousel-slide:hover {
-    transform: scale(1);
+.features-bar .carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1;
 }
 
-.carousel-slide img {
+.features-bar .carousel-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.features-bar .carousel-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.carousel-infinite .carousel-slide:hover img {
-    transform: scale(1.1);
-}
-
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.carousel-infinite:hover {
-    animation-play-state: paused;
+    border-radius: 15px;
 }
 
 /* Controles opcionais (podem ser removidos se não quiser) */
@@ -708,7 +692,7 @@ body {
 .features-bar .container {
     max-width: 100%;
     margin: 0 auto;
-    margin-top: 10%;
+    margin-top: 7%;
     padding: 0;
 }
 
@@ -811,6 +795,13 @@ body {
 }
 
 @media (max-width: 768px) {
+    .features-bar .container {
+        max-width: 100%;
+        margin: 0 auto;
+        margin-top: 13%;
+        padding: 0;
+    }
+
     .carousel-infinite-wrapper {
         height:250px
     }
@@ -894,7 +885,6 @@ body {
 
 /* Animation classes */
 .animate-fade-up {
-    opacity: 0;
     transform: translateY(20px);
     animation: none;
 }
@@ -924,7 +914,6 @@ body {
 }
 
 .animate-scale {
-    opacity: 0;
     transform: scale(0.9);
     animation: none;
 }
