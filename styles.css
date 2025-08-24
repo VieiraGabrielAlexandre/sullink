@@ -2732,4 +2732,43 @@ text-decoration: none;
     .entertainment-image .carousel-control:hover {
         background: #2563eb;
     }
+
+    .image-carousel {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 16px;
+    }
+    .carousel-slide {
+        display: none;
+        width: 100%;
+        transition: opacity 0.5s;
+    }
+    .carousel-slide.active {
+        display: block;
+    }
+    .carousel-slide img {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+    }
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(37,99,235,0.7);
+        color: #fff;
+        border: none;
+        font-size: 2rem;
+        padding: 0 12px;
+        cursor: pointer;
+        z-index: 2;
+        border-radius: 50%;
+        transition: background 0.2s;
+    }
+    .carousel-control.prev { left: 10px; }
+    .carousel-control.next { right: 10px; }
+    .carousel-control:hover { background: #2563eb; }
 }

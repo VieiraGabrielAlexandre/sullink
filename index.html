@@ -70,112 +70,21 @@
     </div>
 </nav>
 
-<!-- Header -->
-<header class="header" id="home">
-    <div class="header-bg"></div>
-    <div class="header-overlay"></div>
-
-    <div class="container">
-        <div class="hero">
-            <div class="carousel">
-                <div class="carousel-container">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide active">
-                        <div class="hero-content">
-                            <div class="hero-text">
-                                <h1 class="hero-title">Internet Fibra Óptica de Alta Velocidade</h1>
-                                <p class="hero-subtitle">Conecte-se ao futuro com a Sul Link. Planos residenciais e empresariais com a melhor tecnologia em fibra óptica.</p>
-                                <a href="https://wa.me/5511969013333?text=Olá! Gostaria de conhecer os planos de internet da Sul Link." target="_blank" class="btn btn-cta">
-                                    <i class="fab fa-whatsapp"></i>
-                                    Fale Conosco
-                                </a>
-                            </div>
-                            <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Fibra Óptica">
-                                <div class="hero-image-overlay"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-slide">
-                        <div class="hero-content">
-                            <div class="hero-text">
-                                <h1 class="hero-title">Velocidade que Você Merece</h1>
-                                <p class="hero-subtitle">Planos de 300M, 600M e 800M para atender todas as suas necessidades. Streaming, jogos e trabalho sem interrupções.</p>
-                                <a href="#plans" class="btn btn-cta">
-                                    <i class="fas fa-rocket"></i>
-                                    Ver Planos
-                                </a>
-                            </div>
-                            <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Alta Velocidade">
-                                <div class="hero-image-overlay"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-slide">
-                        <div class="hero-content">
-                            <div class="hero-text">
-                                <h1 class="hero-title">Cobertura em Expansão</h1>
-                                <p class="hero-subtitle">Consulte se já chegamos na sua região. Estamos expandindo nossa rede para levar internet de qualidade para mais pessoas.</p>
-                                <a href="#coverage" class="btn btn-cta">
-                                    <i class="fas fa-search"></i>
-                                    Consultar CEP
-                                </a>
-                            </div>
-                            <div class="hero-image">
-                                <img src="https://images.pexels.com/photos/4218883/pexels-photo-4218883.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" alt="Cobertura">
-                                <div class="hero-image-overlay"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-controls">
-                    <button class="carousel-control prev">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-indicators">
-                        <button class="carousel-indicator active"></button>
-                        <button class="carousel-indicator"></button>
-                        <button class="carousel-indicator"></button>
-                    </div>
-                    <button class="carousel-control next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
 <!-- Features Bar -->
 <section class="features-bar">
     <div class="container">
-        <div class="features-grid">
-            <div class="feature-item">
-                <i class="fas fa-bolt"></i>
-                <h3>Ultra Velocidade</h3>
-                <p>Fibra óptica com velocidades de até 800 Mega</p>
+        <div class="image-carousel">
+            <button class="carousel-control prev">&#10094;</button>
+            <div class="carousel-slide active">
+                <img src="assets/carrousel-1.png" alt="Imagem 1">
             </div>
-            <div class="feature-item">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Conexão Estável</h3>
-                <p>Internet sem oscilações e quedas</p>
+            <div class="carousel-slide">
+                <img src="assets/carrousel-2.png" alt="Imagem 2">
             </div>
-            <div class="feature-item">
-                <i class="fas fa-headset"></i>
-                <h3>Suporte 24h</h3>
-                <p>Atendimento especializado sempre disponível</p>
+            <div class="carousel-slide">
+                <img src="assets/carrousel-1.png" alt="Imagem 3">
             </div>
-            <div class="feature-item">
-                <i class="fas fa-dollar-sign"></i>
-                <h3>Melhor Preço</h3>
-                <p>Planos com excelente custo-benefício</p>
-            </div>
+            <button class="carousel-control next">&#10095;</button>
         </div>
     </div>
 </section>
@@ -626,5 +535,30 @@
 
 <!-- JavaScript -->
 <script src="script.js"></script>
+<script>
+    const slides = document.querySelectorAll('.carousel-slide');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    document.querySelector('.carousel-control.prev').onclick = () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    };
+    document.querySelector('.carousel-control.next').onclick = () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    };
+
+    // Opcional: auto-play
+    // setInterval(() => {
+    //   currentSlide = (currentSlide + 1) % slides.length;
+    //   showSlide(currentSlide);
+    // }, 4000);
+</script>
 </body>
 </html>
