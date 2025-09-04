@@ -102,8 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Function to show a specific slide
         function showSlide(index) {
             // Ensure index is within bounds
-            if (index >= slides.length) index = 0;
-            if (index < 0) index = slides.length - 1;
+            index = ((index % slides.length) + slides.length) % slides.length;
 
             // Remove active class from all slides
             slides.forEach(slide => {
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Start automatic slideshow
         function startSlideshow() {
-            slideInterval = setInterval(nextSlide, 4000);
+            slideInterval = setInterval(nextSlide, 5000);
         }
 
         // Stop automatic slideshow
