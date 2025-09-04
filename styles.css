@@ -606,7 +606,23 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     border-radius: 15px;
+    display: block;
+}
+
+.features-bar .carousel-slide picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.features-bar .carousel-slide picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
 /* Controles opcionais (podem ser removidos se não quiser) */
