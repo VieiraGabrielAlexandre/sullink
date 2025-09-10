@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = mobileMenuBtn.querySelector('i');
 
     // Debug logs
