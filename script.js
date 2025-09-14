@@ -734,6 +734,11 @@ function typeWriter(element, text, speed = 100) {
 }
 
 // Funções para modal de canais
+function closeChannelsModal() {
+    const modal = document.getElementById('channelsModal');
+    modal.classList.remove('active');
+}
+
 function openChannelsModal(imageName) {
     const modal = document.getElementById('channelsModal');
     const image = document.getElementById('channelsImage');
