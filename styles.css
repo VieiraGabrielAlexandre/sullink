@@ -1219,7 +1219,7 @@ body {
 .btn-plan {
     background: linear-gradient(135deg, #38d430 0%, #0075ff 100%);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem 0rem;
     font-size: 1rem;
     font-weight: 600;
     border-radius: 0.75rem;
