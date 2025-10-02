@@ -334,7 +334,7 @@ body {
 .hero {
     position: relative;
     z-index: 4;
-    padding: 8rem 0 2rem 0;
+    padding: 8rem 0 0rem 0;
 }
 
 /* Carousel Styles */
@@ -2226,7 +2226,7 @@ text-decoration: none;
     }
 
     .hero {
-        padding: 10rem 0 2rem 0;
+        padding: 8rem 0 0rem 0;
     }
 
     .mobile-menu-btn {
@@ -2556,7 +2556,7 @@ text-decoration: none;
     }
 
     .hero {
-        padding: 6.5rem 0 2rem 0;
+        padding: 3.5rem 0 0rem 0;
     }
 
     .hero-title {
