@@ -1608,7 +1608,6 @@ body {
 .entertainment-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
     align-items: center;
     position: relative;
     z-index: 2;
@@ -1675,7 +1674,6 @@ body {
 .business-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
     align-items: center;
     position: relative;
     z-index: 2;
