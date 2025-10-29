@@ -403,29 +403,33 @@ document.addEventListener('DOMContentLoaded', function() {
     initCepConsultation();
 });
 
+let cepsAtendidos = [];
+
+async function carregarCepsAtendidos() {
+    try {
+        const response = await fetch('ceps.json');
+        if (!response.ok) throw new Error('Erro ao carregar ceps.json');
+        const data = await response.json();
+        cepsAtendidos = data.ceps_atendidos || [];
+        console.log('CEPs carregados:', cepsAtendidos);
+    } catch (error) {
+        console.error('Falha ao carregar CEPs:', error);
+    }
+}
+
+
 // CEP Consultation functionality - Moved to end of main DOMContentLoaded
-function initCepConsultation() {
+async function initCepConsultation() {
     console.log('Inicializando consulta de CEP...');
 
     // CEPs atendidos - embutidos no código para evitar problema de CORS
-    const cepsAtendidos = [
-        "01001-000",
-        "01002-000",
-        "01003-000",
-        "01004-000",
-        "01005-000",
-        "01006-000",
-        "01007-000",
-        "01008-000",
-        "01009-000",
-        "01010-000"
-    ];
+    await carregarCepsAtendidos();
 
     const cepForm = document.getElementById('cepForm');
     const cepInput = document.getElementById('cepInput');
     const cepResult = document.getElementById('cepResult');
 
-    console.log('Elementos encontrados:', { cepForm, cepInput, cepResult });
+    console.log('Elementos encontrados:', {cepForm, cepInput, cepResult});
     console.log('cepForm existe?', !!cepForm);
     console.log('cepInput existe?', !!cepInput);
     console.log('cepResult existe?', !!cepResult);
@@ -439,7 +443,7 @@ function initCepConsultation() {
 
     // Função para mostrar resultado
     function showResult(type, message) {
-        console.log('Mostrando resultado:', { type, message });
+        console.log('Mostrando resultado:', {type, message});
         cepResult.className = `cep-result ${type}`;
         cepResult.innerHTML = message;
         cepResult.style.display = 'block';
@@ -447,7 +451,7 @@ function initCepConsultation() {
     }
 
     // Format CEP input
-    cepInput.addEventListener('input', function(e) {
+    cepInput.addEventListener('input', function (e) {
         console.log('Input CEP alterado:', e.target.value);
         let value = e.target.value.replace(/\D/g, '');
         if (value.length > 5) {
@@ -462,7 +466,7 @@ function initCepConsultation() {
     console.log('Tag do elemento cepForm:', cepForm ? cepForm.tagName : 'undefined');
 
     // Handle form submission
-    cepForm.addEventListener('submit', async function(e) {
+    cepForm.addEventListener('submit', async function (e) {
         console.log('Event listener do formulário foi chamado!');
         e.preventDefault();
         console.log('Formulário de CEP submetido!');
@@ -579,7 +583,7 @@ function initCepConsultation() {
     console.log('Botão de submit encontrado:', submitButton);
 
     if (submitButton) {
-        submitButton.addEventListener('click', function(e) {
+        submitButton.addEventListener('click', function (e) {
             console.log('Botão de submit clicado!');
             // Forçar o submit do formulário
             console.log('Tentando forçar submit do formulário...');
@@ -588,7 +592,7 @@ function initCepConsultation() {
             e.preventDefault();
 
             // Disparar manualmente o evento de submit
-            const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+            const submitEvent = new Event('submit', {bubbles: true, cancelable: true});
             cepForm.dispatchEvent(submitEvent);
         });
     }
@@ -599,7 +603,7 @@ function initCepConsultation() {
 
     allButtons.forEach((btn, index) => {
         console.log(`Botão ${index}:`, btn.type, btn.textContent);
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             console.log(`Botão ${index} clicado! Tipo:`, btn.type);
 
             if (btn.type === 'submit' || btn.classList.contains('btn-search')) {

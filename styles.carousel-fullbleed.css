@@ -69,7 +69,7 @@ html, body { overflow-x: hidden; }
 /* Melhorias para o carrossel de entretenimento */
 .entertainment-carousel {
     width: 100%;
-    height: 640px;
+        height: 640px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,7 +139,7 @@ html, body { overflow-x: hidden; }
 
 @media (max-width: 768px) {
     .entertainment-carousel {
-        height: 240px;
+        height: 355px;
         padding: 0;
     }
     .entertainment-slide picture,
